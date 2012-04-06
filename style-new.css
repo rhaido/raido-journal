@@ -1,0 +1,107 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td {margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;}
+table { border-collapse:collapse;border-spacing:0; }
+fieldset,img { border:0; }
+input, textarea, select { font:99% arial, helvetica, clean,sans-serif; }
+
+a { text-decoration: none; }
+
+body{ font-size: 16px; font-family: arial, sans-serif; line-height: 1.2em; color: #CCCCCC; }
+
+body *{ line-height: 1.2em; }
+
+abbr,acronym{ border-bottom: 1px dotted; cursor: help; }
+
+legend{ display: none; }
+
+a:link { color: #f4c464; border-bottom: none; outline:none }
+a:visited { color: #f4c464; border-bottom: none; }
+a:hover { border-bottom: 1px dotted; }
+a:active { color:#940000; }
+
+strong{ color: white }
+
+#logo { right: 0; width: 100px; height: 100px; background: url("raidho.gif") no-repeat; float: right; text-indent: -9999999px; padding-left: 40px; }
+
+#container { width: 750px; margin: 0 auto; line-height: 1.2em; color: #666666; background-color: #FFFFFF; padding-top: 100px; }
+
+#header { width: 100%; border: 0px; padding-top: 10px; padding-bottom: 10px; }
+
+#header ul { padding-top: 30px; list-style: none; font-size: 24px; }
+
+#header li { display: inline; padding-right: 40px; border: 0px; }
+
+#header span { color: #CCCCCC; font-weight: normal; }
+
+#container2 { width: 100%; margin: 0 auto; }
+
+#content { width: 570px; padding-right: 10px; float: left; padding-top: 30px; padding-bottom: 70px; }
+
+#content h2 { font-size: 17px; }
+
+#content p { border-bottom: none; padding-left: 30px; padding-bottom: 6px; }
+
+.dashed{ border-bottom: 1px dashed!important; }
+.first{ margin-top: 0!important; }
+
+ul.details { list-style: none; padding-left: 0px; padding-top: 0px;}
+ul.details h2 { margin-top: 0; margin-bottom: 0.5em; padding-top: 20px;  }
+ul.details h2 a { border: none; color:#666666; outline: none; }
+ul.details h2 a:visited { border: none; color:#666666; }
+ul.details li p { padding-top: 5px; }
+
+ul.details li p span { font-size: 18px; }
+
+ul.details ul { list-style: disc; padding-left: 50px; padding-top: 0px;}
+ul.details ul li { padding-bottom: 0px; }
+ul.details ul li h2 { margin-top: 0; margin-bottom: 0.5em; padding-top: 10px; }
+ul.details ul li h2 a { color: #f4c464; font-size: 16px; }
+ul.details ul li h2 a:link { color: #f4c464; border-bottom: 1px solid; outline: none }
+ul.details ul li h2 a:visited { color: #f4c464; border-bottom: 1px solid; outline: none }
+ul.details ul li h2 a:hover { border-bottom: 1px dotted; }
+ul.details ul li h2 a:active { color:#940000; }
+
+
+/**************** images styles ****************/		
+a img{ border: none; }
+
+img.left, img.center, img.right { padding: 4px; border: 1px solid #a0a0a0; }
+
+img.left { float: left; margin: 0 12px 5px 0; }
+
+img.center { display: block; margin: 0 auto 5px auto; }
+
+img.right { float: right; margin: 0 0 5px 12px; }
+
+/**************** sidebar styles ****************/
+#sidebar { width: 150px; padding-left: 21px; padding-right: 10px; padding-top: 10px; padding-top: 20px; float: right; }
+
+#sidebar h2 { padding-top: 10px; }
+
+#sidebar p { padding-top: 10px; padding-bottom: 10px; border-bottom: 1px solid #DDDDDD; text-align: left; font-size: 10px; }
+
+/**************** footer styles ****************/
+#footer { clear: both; width: 100%; }
+#footer p { float: left; padding-left: 0px; text-align: left; border-bottom: none; font-size: 12px; }
+#footer p a { font-weight:100; border-bottom: 1px dotted #FFFFFF; }
+#footer p a:hover { text-decoration: none; border-bottom: 1px dotted; }
+#footer #infolio{ float: right; padding-bottom: 1em; }
+#footer .text-like{ border: none; }
+
+dl.simple{ clear: left; margin: 0; }
+dl.simple dt{ float: left; clear: left; }
+
+#contacts { margin-bottom: 2em; }
+#contacts dt{ width: 8em; margin-bottom: .5em; padding-top: .3em; padding-left: 30px; }
+#contacts dd{ font-size: 1.5em; margin-bottom: .5em; white-space: nowrap; }
+
+
+
+/*ul.details h2 a.dashed{ color: #f4c464; }
+
+ul.details h2 a.arrow:link{ color: #ccc; border: none; }
+ul.details h2 a.arrow:visited{ border: none; }
+
+ul.details li li{ list-style: disc; }
+ul.details{ margin: 3em 0; }*/
+
