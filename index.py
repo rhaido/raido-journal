@@ -1,6 +1,7 @@
 import web
 import os
 from jinja2 import Environment,FileSystemLoader
+#from jinja2_markdown.extensions import MarkdownExtension
 
 urls = (
   '/', 'index',
@@ -25,7 +26,9 @@ def render_template(template_name, **context):
 
 class index:
         def GET(self):
-                return "Hello, world!"
+                #return render_template('index.html', extensions=[MarkdownExtension])
+                return render_template('index.html')
+
 
 class hello:
 	def GET(self):

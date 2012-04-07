@@ -21,7 +21,7 @@ a:active { color:#940000; }
 
 strong{ color: white }
 
-#logo { right: 0; width: 100px; height: 100px; background: url("raidho.gif") no-repeat; float: right; text-indent: -9999999px; padding-left: 40px; }
+#logo { right: 0; width: 100px; height: 100px; background: url("/assets/gif/raido.gif") no-repeat; float: right; text-indent: -9999999px; padding-left: 40px; }
 
 #container { width: 750px; margin: 0 auto; line-height: 1.2em; color: #666666; background-color: #FFFFFF; padding-top: 100px; }
 
