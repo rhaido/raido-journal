@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% set active_page='Main' %}
+
+{% block content %}
+    <p>Прошедшие тренировки по датам:</p>
+    <ul class="details">
+        <li><h2><a href="#" class="dashed">02.04.2012</a></h2>
+        <div class="hide"><p>В <a href="/tdiary">тренировочном дневнике</a> ведётся запись всех тренировок. На основании
+	этой информации можно сделать вывод о дальнейшем планировании нагрузок и восстановления.
+	Также можно заметить, на какой неделе кто-то халявил, а на какой - нет :)</p>
+        </div></li>
+        <li><h2><a href="#" class="dashed">03.04.2012</a></h2>
+        <div class="hide">
+	<!-- http://www.maxdesign.com.au/articles/definition/ -->
+    	  <dl id="contacts" class="simple">
+            <dt>TT:</dt>
+            <dd>1:34:0</dd>
+            <dt>AvP:</dt>
+            <dd>129</dd>
+            <dt>MxP:</dt>
+            <dd>172</dd>
+            <dt>HZ:</dt>
+            <dd>00:51:16</dd>
+            <dt>FZ:</dt>
+            <dd>0:28:04</dd>
+            <dt>PZ:</dt>
+            <dd>00:00:20</dd>
+            <dt>AvS:</dt>
+            <dd>25.1</dd>
+            <dt>Dst:</dt>
+            <dd>44.01</dd>
+            <dt>KCal:</dt>
+            <dd>763</dd>
+	  </dl>
+        </div></li>
+        <li><h2><a href="#" class="dashed">05.04.2012</a></h2>
+        <div class="hide">
+	  <p><table>
+	    <tr>
+	      <td>TT</td><td>1:33:31</td>
+	      <td>AvP</td><td>122</td>
+	      <td>MxP</td><td>174</td>
+	    </tr>
+	  </table></p>
+        </div></li>
+    </ul>
+{% endblock %}
