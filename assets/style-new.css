@@ -1,3 +1,5 @@
+/* SCSS!!!! */
+
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td {margin:0;padding:0;}
 h1,h2,h3,h4,h5,h6 {font-size:100%;}
 table { border-collapse:collapse;border-spacing:0; }
@@ -45,6 +47,7 @@ strong{ color: white }
 .first{ margin-top: 0!important; }
 
 ul.details { list-style: none; padding-left: 0px; padding-top: 0px;}
+ul.details li { clear: both; }
 ul.details h2 { margin-top: 0; margin-bottom: 0.5em; padding-top: 20px;  }
 ul.details h2 a { border: none; color:#666666; outline: none; }
 ul.details h2 a:visited { border: none; color:#666666; }
@@ -64,13 +67,9 @@ ul.details ul li h2 a:active { color:#940000; }
 
 /**************** images styles ****************/		
 a img{ border: none; }
-
 img.left, img.center, img.right { padding: 4px; border: 1px solid #a0a0a0; }
-
 img.left { float: left; margin: 0 12px 5px 0; }
-
 img.center { display: block; margin: 0 auto 5px auto; }
-
 img.right { float: right; margin: 0 0 5px 12px; }
 
 /**************** sidebar styles ****************/
@@ -88,14 +87,19 @@ img.right { float: right; margin: 0 0 5px 12px; }
 #footer #infolio{ float: right; padding-bottom: 1em; }
 #footer .text-like{ border: none; }
 
-dl.simple{ clear: left; margin: 0; }
-dl.simple dt{ float: left; clear: left; }
+/**************** training lists ******************/
+dl.shorthand { padding-top: 5px; padding-left: 30px; }
+dl.shorthand dt{ float: left; color: #000; margin-top: 1em;}
+dl.shorthand dd{ margin-top: 1em; margin-left: 3em; }
 
+dl.tlist{ width: 120px; float: left; padding-top: 5px; padding-left: 30px; }
+dl.tlist dt{ float: left; color: #000; }
+dl.tlist dd{ margin-bottom: 1em; margin-left: 3em; }
+
+/***************** contacts style *******************/
 #contacts { margin-bottom: 2em; }
 #contacts dt{ width: 8em; margin-bottom: .5em; padding-top: .3em; padding-left: 30px; }
 #contacts dd{ font-size: 1.5em; margin-bottom: .5em; white-space: nowrap; }
-
-
 
 /*ul.details h2 a.dashed{ color: #f4c464; }
 

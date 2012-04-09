@@ -5,7 +5,7 @@ from jinja2 import Environment,FileSystemLoader
 
 urls = (
   '/', 'index',
-  '/hello', 'hello'
+  '/tdiary', 'tdiary'
 )
 
 app = web.application(urls, globals())
@@ -29,6 +29,9 @@ class index:
                 #return render_template('index.html', extensions=[MarkdownExtension])
                 return render_template('index.html')
 
+class tdiary:
+        def GET(self):
+                return render_template('tlist.html')
 
 class hello:
 	def GET(self):
