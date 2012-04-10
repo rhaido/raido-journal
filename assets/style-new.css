@@ -92,9 +92,9 @@ dl.shorthand { padding-top: 5px; padding-left: 30px; }
 dl.shorthand dt{ float: left; color: #000; margin-top: 1em;}
 dl.shorthand dd{ margin-top: 1em; margin-left: 3em; }
 
-dl.tlist{ width: 120px; float: left; padding-top: 5px; padding-left: 30px; }
-dl.tlist dt{ float: left; color: #000; }
-dl.tlist dd{ margin-bottom: 1em; margin-left: 3em; }
+dl.tlist{ width: 120px; float: left; padding-left: 30px; }
+dl.tlist dt{ float: left; color: #000; padding-top: 5px; }
+dl.tlist dd{ margin-left: 3em; padding-top: 5px; }
 
 /***************** contacts style *******************/
 #contacts { margin-bottom: 2em; }

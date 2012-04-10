@@ -29,11 +29,44 @@
       </li>
     </ul>
     <ul class="details">
-        <li><h2><a href="#" class="dashed">02.04.2012</a></h2>
-        <div class="hide"><p>В <a href="/tdiary">тренировочном дневнике</a> ведётся запись всех тренировок. На основании
-	этой информации можно сделать вывод о дальнейшем планировании нагрузок и восстановления.
-	Также можно заметить, на какой неделе кто-то халявил, а на какой - нет :)</p>
-        </div></li>
+        <li>
+          <h2><a href="#" class="dashed">02.04.2012</a></h2>
+          <div class="hide"><p>В <a href="/tdiary">тренировочном дневнике</a> ведётся запись всех тренировок. На основании
+              этой информации можно сделать вывод о дальнейшем планировании нагрузок и восстановления.
+              Также можно заметить, на какой неделе кто-то халявил, а на какой - нет :)</p>
+          </div>
+        </li>
+        {% for k in tlist %}
+        <li>
+          <h2><a href="#" class="dashed">{{ k.traindate | e }}</a></h2>
+          <div class="hide">
+            <dl class="tlist">
+              <dt>TT</dt>
+              <dd>{{ k.tt | e }}</dd>
+              <dt>AvP</dt>
+              <dd>{{ k.avp | e }}</dd>
+              <dt>MxP</dt>
+              <dd>{{ k.mxp | e }}</dd>
+            </dl>
+            <dl class="tlist">
+              <dt>HZ</dt>
+              <dd>{{ k.z1 | e }}</dd>
+              <dt>FZ</dt>
+              <dd>{{ k.z2 | e }}</dd>
+              <dt>PZ</dt>
+              <dd>{{ k.z3 | e }}</dd>
+            </dl>
+            <dl class="tlist">
+              <dt>AvS</dt>
+              <dd>{{ k.avs | e }}</dd>
+              <dt>Dst</dt>
+              <dd>{{ k.dst | e }}</dd>
+              <dt>KCal</dt>
+              <dd>{{ k.kcal | e }}</dd>
+            </dl>
+          </div>
+        </li>
+        {% endfor %}
         <li><h2><a href="#" class="dashed">03.04.2012</a></h2>
         <div class="hide">
 	<!-- http://www.maxdesign.com.au/articles/definition/ -->
