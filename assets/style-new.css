@@ -88,9 +88,11 @@ img.right { float: right; margin: 0 0 5px 12px; }
 #footer .text-like{ border: none; }
 
 /**************** training lists ******************/
+.floatLeft { float: left; }
+.inputtext { height: 160px; }
 dl.shorthand { padding-top: 5px; padding-left: 30px; }
-dl.shorthand dt{ float: left; color: #000; margin-top: 1em;}
-dl.shorthand dd{ margin-top: 1em; margin-left: 3em; }
+dl.shorthand dt{ float: left; margin-top: 5px; color: #000; }
+dl.shorthand dd{ margin-top: 5px; margin-left: 3em; }
 
 dl.tlist{ width: 120px; float: left; padding-left: 30px; }
 dl.tlist dt{ float: left; color: #000; padding-top: 5px; }

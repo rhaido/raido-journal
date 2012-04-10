@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% set active_page='Add' %}
+
+{% block content %}
+{% if error %}<p class=error><strong>Error:</strong> {{ error }}</p>{% endif %}
+<ul class="details">
+  {% include 'shorthand.html' %}
+  <li>
+<p>Заполните форму и нажмите кнопку 'Добавить'</p>
+<form action="{{ path | e }}" method="POST">
+  <dl class="shorthand floatLeft">
+    <dt>Date</dt>
+    <dd><input type=text name=traindate></dd>
+    <dt>Title</dt>
+    <dd><input type=text name=title>
+    <dt>Route</dt>
+    <dd><input type=text name=route>
+    <dt>TT</dt>
+    <dd><input type=text name=traintime>
+    <dt>AvP</dt>
+    <dd><input type=text name=avp>
+    <dt>MxP</dt>
+    <dd><input type=text name=mxp>
+    <dt>HZ</dt>
+    <dd><input type=text name=hz>
+    <dt>FZ</dt>
+    <dd><input type=text name=fz>
+    <dt>PZ</dt>
+    <dd><input type=text name=pz>
+    <dt>AvS</dt>
+    <dd><input type=text name=avs>
+    <dt>Dst</dt>
+    <dd><input type=text name=dst>
+    <dt>KCal</dt>
+    <dd><input type=text name=kcal>
+    <!-- <dt>Description</dt>
+    <dd><input type=text name=desc> -->
+    <dd><input type=submit value="Добавить">
+  </dl>
+  <dl class="shorthand">
+    <dt></dt>
+    <dd><textarea class="inputtext" name=desc>Описание тренировки</textarea></dd>
+</form>
+{% endblock %}
