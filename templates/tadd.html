@@ -7,38 +7,36 @@
   {% include 'shorthand.html' %}
   <li>
 <p>Заполните форму и нажмите кнопку 'Добавить'</p>
-<form action="{{ path | e }}" method="POST">
+<form action="{{ url_for('tadd') }}" method="POST">
   <dl class="shorthand floatLeft">
     <dt>Date</dt>
     <dd><input type=text name=traindate></dd>
     <dt>Title</dt>
-    <dd><input type=text name=title>
+    <dd><input type=text name=title></dd>
     <dt>Route</dt>
-    <dd><input type=text name=route>
+    <dd><input type=text name=route></dd>
     <dt>TT</dt>
-    <dd><input type=text name=traintime>
+    <dd><input type=text name=traintime></dd>
     <dt>AvP</dt>
-    <dd><input type=text name=avp>
+    <dd><input type=text name=avp></dd>
     <dt>MxP</dt>
-    <dd><input type=text name=mxp>
+    <dd><input type=text name=mxp></dd>
     <dt>HZ</dt>
-    <dd><input type=text name=hz>
+    <dd><input type=text name=hz></dd>
     <dt>FZ</dt>
-    <dd><input type=text name=fz>
+    <dd><input type=text name=fz></dd>
     <dt>PZ</dt>
-    <dd><input type=text name=pz>
+    <dd><input type=text name=pz></dd>
     <dt>AvS</dt>
-    <dd><input type=text name=avs>
+    <dd><input type=text name=avs></dd>
     <dt>Dst</dt>
-    <dd><input type=text name=dst>
+    <dd><input type=text name=dst></dd>
     <dt>KCal</dt>
-    <dd><input type=text name=kcal>
-    <!-- <dt>Description</dt>
-    <dd><input type=text name=desc> -->
-    <dd><input type=submit value="Добавить">
+    <dd><input type=text name=kcal></dd>
+    <dd><input type=submit value="Добавить"></dd>
   </dl>
   <dl class="shorthand">
     <dt></dt>
-    <dd><textarea class="inputtext" name=desc>Описание тренировки</textarea></dd>
+    <dd><textarea class="inputtext" rows="5" cols="40" rows="" name=desc>Описание тренировки</textarea></dd>
 </form>
 {% endblock %}

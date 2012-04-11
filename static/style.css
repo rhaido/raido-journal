@@ -23,7 +23,7 @@ a:active { color:#940000; }
 
 strong{ color: white }
 
-#logo { right: 0; width: 100px; height: 100px; background: url("/assets/gif/raido.gif") no-repeat; float: right; text-indent: -9999999px; padding-left: 40px; }
+#logo { right: 0; width: 100px; height: 100px; background: url("/static/gif/raido.gif") no-repeat; float: right; text-indent: -9999999px; padding-left: 40px; }
 
 #container { width: 750px; margin: 0 auto; line-height: 1.2em; color: #666666; background-color: #FFFFFF; padding-top: 100px; }
 
@@ -89,7 +89,8 @@ img.right { float: right; margin: 0 0 5px 12px; }
 
 /**************** training lists ******************/
 .floatLeft { float: left; }
-.inputtext { height: 160px; }
+.inputtext { height: 100px; width: 100%; max-height: 100px; }
+
 dl.shorthand { padding-top: 5px; padding-left: 30px; }
 dl.shorthand dt{ float: left; margin-top: 5px; color: #000; }
 dl.shorthand dd{ margin-top: 5px; margin-left: 3em; }
