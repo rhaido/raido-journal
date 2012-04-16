@@ -88,21 +88,22 @@ img.right { float: right; margin: 0 0 5px 12px; }
 #footer .text-like{ border: none; }
 
 /**************** training lists ******************/
-.floatLeft { float: left; }
-.inputtext { height: 100px; width: 100%; max-height: 100px; }
+.inputText { height: 100px; width: 100%; min-width: 100%; max-width: 100%; }
+.blackFont dt { color: #000; }
+.terminTopAlign dt { padding-top: 3px; }
 
-dl.shorthand { padding-top: 5px; padding-left: 30px; }
-dl.shorthand dt{ float: left; margin-top: 5px; color: #000; }
-dl.shorthand dd{ margin-top: 5px; margin-left: 3em; }
+dl.tdef { padding-top: 5px; padding-left: 30px; }
+dl.tdef dt { float: left; margin-top: 5px; }
+dl.tdef dd { margin-top: 5px; margin-left: 3em; }
 
-dl.tlist{ width: 120px; float: left; padding-left: 30px; }
-dl.tlist dt{ float: left; color: #000; padding-top: 5px; }
-dl.tlist dd{ margin-left: 3em; padding-top: 5px; }
+dl.tlist { width: 120px; float: left; padding-left: 30px; }
+dl.tlist dt { float: left; color: #000; padding-top: 5px; }
+dl.tlist dd { margin-left: 3em; padding-top: 5px; }
 
 /***************** contacts style *******************/
 #contacts { margin-bottom: 2em; }
-#contacts dt{ width: 8em; margin-bottom: .5em; padding-top: .3em; padding-left: 30px; }
-#contacts dd{ font-size: 1.5em; margin-bottom: .5em; white-space: nowrap; }
+#contacts dt { width: 8em; margin-bottom: .5em; padding-top: .3em; padding-left: 30px; }
+#contacts dd { font-size: 1.5em; margin-bottom: .5em; white-space: nowrap; }
 
 /*ul.details h2 a.dashed{ color: #f4c464; }
 
