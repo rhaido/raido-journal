@@ -3,4 +3,4 @@
 #sudo pip install virtualenv
 virtualenv venv
 . venv/bin/activate
-pip install web.py flask uwsgi
+pip install flask uwsgi flask-sqlalchemy sqlalchemy # psycopg2

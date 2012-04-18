@@ -3,15 +3,39 @@ from sqlite3 import dbapi2 as sqlite3
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
+from flask.ext.sqlalchemy import SQLAlchemy
 
 import web
 import time
 import os
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://train_user:bike_train@localhost/traindb'
 #app.config.from_object(__name__)
 
-db = web.database(dbn='sqlite', db='basic_training.db')
+db = SQLAlchemy(app)
+
+print db
+
+class TUser(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  username = db.Column(db.String(80), unique=True)
+  email = db.Column(db.String(120), unique=True)
+
+  def __init__(self, username, email):
+    self.username = username
+    self.email = email
+
+  def __repr__(self):
+    return '<User %r>' % self.username
+
+db.create_all()
+
+admin = TUser('admin', 'admin@example.com')
+guest = TUser('guest', 'guest@example.com')
+db.session.add(admin)
+db.session.add(guest)
+db.session.commit()
 
 @app.template_filter('datetimeformat')
 def datetimeformat(value, format='%d.%m.%Y'):
