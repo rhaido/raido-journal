@@ -1,24 +1,11 @@
-#from __future__ import with_statement
-from sqlite3 import dbapi2 as sqlite3
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
-from flask.ext.sqlalchemy import SQLAlchemy
+from models import app,db
 
 import web
 import time
 import os
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://train_user:bike_train@localhost/traindb'
-#app.config.from_object(__name__)
-
-db = SQLAlchemy(app)
-
-print db
-
-def init_db():
-  db.create_all()
 
 @app.template_filter('datetimeformat')
 def datetimeformat(value, format='%d.%m.%Y'):
