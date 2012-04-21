@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% set active_page='Add' %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+{% if error %}<p class=error><strong>Error:</strong> {{ error }}</p>{% endif %}
+<ul class="details">
+  {% include 'shorthand.html' %}
+  <li><h2><a href="#">Заполните форму и нажмите кнопку 'Добавить'</a></h2>
+<form action="{{ url_for('tadd') }}" method="POST">
+  <dl class="tdef terminTopAlign">
+    {{ form.csrf }}
+    {{ render_field(form.title) }}
+    {{ render_field(form.date) }}
+    {{ render_field(form.route) }}
+    {{ render_field(form.tt) }}
+    {{ render_field(form.avp) }}
+    {{ render_field(form.mxp) }}
+    {{ render_field(form.z1) }}
+    {{ render_field(form.z2) }}
+    {{ render_field(form.z3) }}
+    {{ render_field(form.avs) }}
+    {{ render_field(form.dst) }}
+    <dd><textarea class="inputText" rows="5" cols="40" name="desc">Описание тренировки</textarea></dd>
+    <dd><input type="submit" value="Добавить"></dd>
+  </dl>
+</form>
+{% endblock %}
