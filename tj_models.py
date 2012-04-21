@@ -43,8 +43,9 @@ class TJBasicTraining(db.Model):
   avs = db.Column(db.Integer, default=0)
   kcal = db.Column(db.Integer, default=0)
   desc = db.Column(db.Text, default='No description yet')
+  dst = db.Column(db.Integer, default=0)
   
-  def __init__(self, title, route, traindate,tt,avp,mxp,z1,z2,z3,avs,kcal,desc):
+  def __init__(self,title,route,traindate,tt,avp,mxp,z1,z2,z3,avs,kcal,desc):
     self.title = title
     self.route = route
     self.traindate = traindate

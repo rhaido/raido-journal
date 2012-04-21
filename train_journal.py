@@ -1,7 +1,7 @@
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
-from models import app,db
+from tj_models import app, db, TJBasicTraining
 
 import web
 import time
@@ -18,7 +18,7 @@ def index():
 
 @app.route('/tdiary')
 def tdiary():
-  trainings = db.select('basic_training', what="title,traindate,tt,avp,mxp,z1,z2,z3,avs,dst,kcal,author_description,route", order="traindate ASC").list()
+  trainings = list(TJBasicTraining.query.order_by(TJBasicTraining.traindate).all())
   print trainings
   return render_template('tlist.html', tlist=trainings)
 
