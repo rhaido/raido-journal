@@ -1,7 +1,10 @@
+# -*- coding: UTF-* -*-
+
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 from tj_models import app, db, TJBasicTraining
+from tj_forms  import tj_tadd_basic_form
 
 import web
 import time
@@ -23,37 +26,25 @@ def tdiary():
   return render_template('tlist.html', tlist=trainings)
 
 #@app.route('/tadd', methods = ['GET','POST'])
-@app.route('/tadd', methods = ['GET'])
+@app.route('/tadd', methods = ['GET','POST'])
 def tadd():
-  if request.method == 'GET':
-    return render_template('tadd.html')
+  # tadd_form = tj_tadd_basic_form(request.form)
+  tadd_form = tj_tadd_basic_form(csrf_enabled=False)
 
-  if request.method == 'POST':
-    i = web.input()
-
-    id = db.insert(
-        'basic_training',
-        title=i.title,
-        traindate=time.strftime('%Y-%m-%d',(time.strptime(i.traindate, '%d.%m.%Y'))),
-        tt=i.traintime,
-        avp=i.avp,
-        mxp=i.mxp,
-        z1=i.hz,
-        z2=i.fz,
-        z3=i.pz,
-        avs=i.avs,
-        dst=i.dst,
-        kcal=i.kcal,
-        author_description='No Desc',
-        route=i.route)
-
-    print i, id
-
+  if tadd_form.validate_on_submit():
+    #flash("Success")
     return redirect(url_for('tdiary'))
+
+  return render_template('tadd_basic.html', form = tadd_form)
 
 @app.route('/hello')
 def hello():
   return render_template('layout.html')
+
+@app.route('/forms')
+def tj_forms():
+  frm = tj_tadd_basic_form(request.form)
+  return render_template('forms.html', form=frm)
 
 if __name__ == "__main__":
   app.run(debug=True)

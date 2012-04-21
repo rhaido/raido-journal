@@ -1,9 +1,12 @@
+# -*- coding: UTF-* -*-
+
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://train_user:bike_train@127.0.0.1/traindb'
+app.config['CSRF_ENABLED'] = None
 
 db = SQLAlchemy(app)
 
@@ -41,9 +44,9 @@ class TJBasicTraining(db.Model):
   z2 = db.Column(db.String(10), nullable=False, default='00:00:00')
   z3 = db.Column(db.String(10), nullable=False, default='00:00:00')
   avs = db.Column(db.Integer, default=0)
+  dst = db.Column(db.Integer, default=0)
   kcal = db.Column(db.Integer, default=0)
   desc = db.Column(db.Text, default='No description yet')
-  dst = db.Column(db.Integer, default=0)
   
   def __init__(self,title,route,traindate,tt,avp,mxp,z1,z2,z3,avs,kcal,desc):
     self.title = title
