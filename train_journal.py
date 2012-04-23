@@ -33,6 +33,11 @@ def tadd():
 
   if tadd_form.validate_on_submit():
     #flash("Success")
+    print tadd_form.data
+
+    for key in tadd_form.data:
+      print key, tadd_form.data[key]
+
     return redirect(url_for('tdiary'))
 
   return render_template('tadd_basic.html', form = tadd_form)
