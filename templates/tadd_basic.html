@@ -7,7 +7,7 @@
 <ul class="details">
   {% include 'shorthand.html' %}
   <li><h2><a href="#">Заполните форму и нажмите кнопку 'Добавить'</a></h2>
-<form action="{{ url_for('tadd') }}" method="POST">
+<form action="{{ url_for('tj_tadd') }}" method="POST">
   <dl class="tdef terminTopAlign">
     {{ render_field(form.title) }}
     {{ render_field(form.date) }}

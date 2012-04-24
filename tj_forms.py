@@ -4,6 +4,12 @@ import time
 import datetime
 
 from flask.ext.wtf import Form, BooleanField, TextField, PasswordField, DateField, validators
+from flask.ext.wtf import Required, Length
+
+class tj_user_add_form(Form):
+  username = TextField('Desired Name*', validators=[Required(),Length(min=1, max=30)])
+  password = PasswordField('Password*', validators=[Required(), Length(min=9,max=21)])
+  email    = TextField('Email*', validators=[Required(), Length(min=1,max=40)])
 
 class tj_tadd_basic_form(Form):
   title = TextField('Title', [validators.length(min=1,max=30)], default='This day training')

@@ -4,7 +4,7 @@ from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 from tj_models import app, db, TJBasicTraining
-from tj_forms  import tj_tadd_basic_form
+from tj_forms  import tj_tadd_basic_form, tj_user_add_form
 
 import web
 import time
@@ -27,7 +27,7 @@ def tdiary():
 
 #@app.route('/tadd', methods = ['GET','POST'])
 @app.route('/tadd', methods = ['GET','POST'])
-def tadd():
+def tj_tadd():
   # tadd_form = tj_tadd_basic_form(request.form)
   tadd_form = tj_tadd_basic_form(csrf_enabled=False)
 
@@ -41,6 +41,16 @@ def tadd():
     return redirect(url_for('tdiary'))
 
   return render_template('tadd_basic.html', form = tadd_form)
+
+@app.route('/uadd', methods = ['GET','POST'])
+def tj_uadd():
+  uadd_form = tj_user_add_form(csrf_enabled=False)
+
+  if uadd_form.validate_on_submit():
+    print uadd_form_data
+    return redirect(url_for('tj_add'))
+
+  return render_template('user_add.html', form = uadd_form)
 
 @app.route('/hello')
 def hello():

@@ -92,6 +92,10 @@ img.right { float: right; margin: 0 0 5px 12px; }
 .blackFont dt { color: #000; }
 .terminTopAlign dt { padding-top: 3px; }
 
+dl.udef { padding-top: 5px; padding-left: 30px; width: 100%; }
+dl.udef dt { float: left; margin-top: 5px; text-align: right; width: 20%; }
+dl.udef dd { margin-top: 5px; margin-left: 7em; }
+
 dl.tdef { padding-top: 5px; padding-left: 30px; }
 dl.tdef dt { float: left; margin-top: 5px; }
 dl.tdef dd { margin-top: 5px; margin-left: 3em; }
