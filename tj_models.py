@@ -30,7 +30,7 @@ class TJUser(db.Model):
     self.passwd = passwd
 
   def __repr__(self):
-    return '<User %r>' % self.username
+    return '<User %r %r>' % (self.username, self.email)
 
 class TJBasicTraining(db.Model):
   id = db.Column(db.Integer, primary_key=True)

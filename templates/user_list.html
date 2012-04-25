@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% set active_page='Add' %}
+
+{% block content %}
+<ul class="details">
+  {% for k in userlist %}
+  <li><h2><a href="#" class="dashed">{{ k.username }}</a></h2>
+  <div class="hide">
+    <dl class="tdef blackFont">
+      <dt>Email</dt>
+      <dd>{{ k.email }}</dd>
+      <dt>Password</dt>
+      <dd>{{ k.passwd }}</dd>
+    </dl>
+  </div>
+  {% endfor %}
+  <li><h2><a href="#" class="dashed">Mike Grozak</a></h2>
+  <div class="hide">
+    <dl class="tdef blackFont">
+      <dt>Email</dt>
+      <dd>test@testdomain.com</dd>
+      <dt>Attr2</dt>
+      <dd>Attr value 2</dd>
+      <dt>Attr3</dt>
+      <dd>Attr value 3</dd>
+    </dl>
+  </div></li>
+  <li><h2><a href="#" class="dashed">Test user1</a></h2>
+  <div class="hide">
+    <dl class="tdef blackFont">
+      <dt>Email</dt>
+      <dd>test@testdomain.com</dd>
+      <dt>Attr2</dt>
+      <dd>Attr value 2</dd>
+      <dt>Attr3</dt>
+      <dd>Attr value 3</dd>
+    </dl>
+  </div></li>
+  <li><h2><a href="#" class="dashed">Test user2</a></h2>
+  <div class="hide">
+    <dl class="tdef blackFont">
+      <dt>Email</dt>
+      <dd>test@testdomain.com</dd>
+      <dt>Attr2</dt>
+      <dd>Attr value 2</dd>
+      <dt>Attr3</dt>
+      <dd>Attr value 3</dd>
+    </dl>
+  </div></li>
+</ul>
+{% endblock %}

@@ -3,7 +3,7 @@
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
-from tj_models import app, db, TJBasicTraining
+from tj_models import app, db, TJBasicTraining, TJUser
 from tj_forms  import tj_tadd_basic_form, tj_user_add_form
 
 import web
@@ -47,10 +47,28 @@ def tj_uadd():
   uadd_form = tj_user_add_form(csrf_enabled=False)
 
   if uadd_form.validate_on_submit():
-    print uadd_form_data
-    return redirect(url_for('tj_add'))
+    uattrs = uadd_form.data
+    print uattrs
+
+    newuser = TJUser(username=uattrs['username'], email=uattrs['email'], passwd=uattrs['password'])
+
+    print newuser
+
+    db.session.add(newuser)
+    db.session.commit()
+
+    return redirect(url_for('tj_uadd'))
 
   return render_template('user_add.html', form = uadd_form)
+
+@app.route('/ulist')
+def tj_ulist():
+  usrs = TJUser.query.all()
+
+  print usrs
+
+  return render_template('user_list.html', userlist=usrs)
+  
 
 @app.route('/hello')
 def hello():

@@ -5,16 +5,16 @@
 {% block content %}
 {% if error %}<p class=error><strong>Error:</strong> {{ error }}</p>{% endif %}
 <ul class="details">
-  <li><h2><a href="#">Заполните форму и нажмите кнопку 'Добавить'</a></h2>
+<li><h2><a href="#">Заполните форму и нажмите кнопку 'Добавить'</a></h2></li>
 <form action="{{ url_for('tj_uadd') }}" method="POST">
   <dl class="udef terminTopAlign">
     {{ render_field(form.username) }}
     {{ render_field(form.email) }}
     {{ render_field(form.password) }}
-    <dt>Confirmation*</dt>
-    <dd><input id="pconfirm" name="pconfirm" type="password"></dd>
+    {{ render_field(form.password_repeat) }}
     <dt>&nbsp;</dt>
     <dd><input type="submit" value="Добавить"/></dd>
   </dl>
 </form>
+</ul>
 {% endblock %}
