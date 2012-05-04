@@ -6,34 +6,38 @@
 <ul class="details">
   {% include 'shorthand.html' %}
   <li><h2><a href="#">Заполните форму и нажмите кнопку 'Добавить'</a></h2>
-<form action="{{ url_for('tadd') }}" method="POST">
-  <dl class="tdef terminTopAlign">
-    <dt>Date</dt>
-    <dd><input type="text" name="traindate"></dd>
-    <dt>Title</dt>
-    <dd><input type="text" name="title"></dd>
-    <dt>Route</dt>
-    <dd><input type="text" name="route"></dd>
-    <dt>TT</dt>
-    <dd><input type="text" name="traintime"></dd>
-    <dt>AvP</dt>
-    <dd><input type="text" name="avp"></dd>
-    <dt>MxP</dt>
-    <dd><input type="text" name="mxp"></dd>
-    <dt>HZ</dt>
-    <dd><input type="text" name="hz"></dd>
-    <dt>FZ</dt>
-    <dd><input type="text" name="fz"></dd>
-    <dt>PZ</dt>
-    <dd><input type="text" name="pz"></dd>
-    <dt>AvS</dt>
-    <dd><input type="text" name="avs"></dd>
-    <dt>Dst</dt>
-    <dd><input type="text" name="dst"></dd>
-    <dt>KCal</dt>
-    <dd><input type="text" name="kcal"></dd>
-    <dd><textarea class="inputText" rows="5" cols="40" name="desc">Описание тренировки</textarea></dd>
-    <dd><input type="submit" value="Добавить"></dd>
-  </dl>
-</form>
+  <div class="hide">
+    <form action="{{ url_for('tadd') }}" method="POST">
+      <dl class="tdef terminTopAlign">
+        <dt>Date</dt>
+        <dd><input type="text" name="traindate"></dd>
+        <dt>Title</dt>
+        <dd><input type="text" name="title"></dd>
+        <dt>Route</dt>
+        <dd><input type="text" name="route"></dd>
+        <dt>TT</dt>
+        <dd><input type="text" name="traintime"></dd>
+        <dt>AvP</dt>
+        <dd><input type="text" name="avp"></dd>
+        <dt>MxP</dt>
+        <dd><input type="text" name="mxp"></dd>
+        <dt>HZ</dt>
+        <dd><input type="text" name="hz"></dd>
+        <dt>FZ</dt>
+        <dd><input type="text" name="fz"></dd>
+        <dt>PZ</dt>
+        <dd><input type="text" name="pz"></dd>
+        <dt>AvS</dt>
+        <dd><input type="text" name="avs"></dd>
+        <dt>Dst</dt>
+        <dd><input type="text" name="dst"></dd>
+        <dt>KCal</dt>
+        <dd><input type="text" name="kcal"></dd>
+        <dd><textarea class="inputText" rows="5" cols="40" name="desc">Описание тренировки</textarea></dd>
+        <dd><input type="submit" value="Добавить"></dd>
+      </dl>
+    </form>
+  </div>
+  </li>
+</ul>
 {% endblock %}
