@@ -26,3 +26,7 @@ class tj_tadd_basic_form(Form):
   dst   = TextField('Dst', [validators.optional()], default='0.0')
   kcal  = TextField('KCal', [validators.optional()], default='0.0')
   
+class tj_tadd_speed_form(tj_tadd_basic_form):
+  acctime = TextField('AT', [validators.required()], default='00:00:00')
+  accnum  = TextField('AN', [validators.optional()], default='0')
+

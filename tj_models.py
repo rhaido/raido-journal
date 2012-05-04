@@ -65,11 +65,42 @@ class TJBasicTraining(db.Model):
   def __repr__(self):
     return '<TJBasicTraining %r>' % self.title
 
-#      tt,avp,mxp,z1,z2,z3,avs,dst,kcal,author_description,route
-#admin = TUser('admin', 'admin@example.com')
-#guest = TUser('guest', 'guest@example.com')
-#db.session.add(admin)
-#db.session.add(guest)
-#db.session.commit()
+class TJSpeedTraining(db.Model):
+  __tablename__ = 'tj_speed_training'
 
+  id = db.Column(db.Integer, primary_key=True)
+  title = db.Column(db.String(80), nullable=False)
+  route = db.Column(db.String(120), nullable=False, default='No route provided')
+  traindate = db.Column(db.DateTime, default=datetime.now, nullable=False)
+  tt = db.Column(db.String(10), nullable=False, default='00:00:00')
+  avp = db.Column(db.Integer, default=0)
+  mxp = db.Column(db.Integer, default=0)
+  z1 = db.Column(db.String(10), nullable=False, default='00:00:00')
+  z2 = db.Column(db.String(10), nullable=False, default='00:00:00')
+  z3 = db.Column(db.String(10), nullable=False, default='00:00:00')
+  avs = db.Column(db.Integer, default=0)
+  dst = db.Column(db.Integer, default=0)
+  kcal = db.Column(db.Integer, default=0)
+  desc = db.Column(db.Text, default='No description yet')
+  acctime = db.Column(db.String(10), nullable=False, default='00:00:00')
+  accnum  = db.Column(db.Integer, nullable=False, default=0)
+
+  def __init__(self,title,route,traindate,tt,avp,mxp,z1,z2,z3,avs,kcal,desc,accnum,acctime):
+    self.title = title
+    self.route = route
+    self.traindate = traindate
+    self.tt = tt
+    self.avp = avp
+    self.mxp = mxp
+    self.z1 = z1
+    self.z2 = z2
+    self.z3 = z3
+    self.avs = avs
+    self.kcal = kcal
+    self.desc = desc
+    self.accnum = accnum
+    self.acctime = acctime
+
+  def __repr__(self):
+    return '<TJSpeedTraining %r>' % self.title
 

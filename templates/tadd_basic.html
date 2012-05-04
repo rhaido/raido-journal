@@ -6,7 +6,8 @@
 {% if error %}<p class=error><strong>Error:</strong> {{ error }}</p>{% endif %}
 <ul class="details">
   {% include 'shorthand.html' %}
-  <li><h2><a href="#">Заполните форму и нажмите кнопку 'Добавить'</a></h2>
+  <li><h2><a href="#" class="dashed">Добавить базовую тренировку</a></h2>
+  <div class="hide">
     <form action="{{ url_for('tj_tadd') }}" method="POST">
       <dl class="tdef terminTopAlign">
         {{ render_field(form.title) }}
@@ -24,6 +25,30 @@
         <dd><input type="submit" value="Добавить"></dd>
       </dl>
     </form>
+  </div>
+  </li>
+  <li><h2><a href="#" class="dashed">Добавить скоростную тренировку</a></h2>
+  <div class="hide">
+    <form action="{{ url_for('tj_tadd') }}" method="POST">
+      <dl class="tdef terminTopAlign">
+        {{ render_field(form_speed.title) }}
+        {{ render_field(form_speed.date) }}
+        {{ render_field(form_speed.route) }}
+        {{ render_field(form_speed.tt) }}
+        {{ render_field(form_speed.avp) }}
+        {{ render_field(form_speed.mxp) }}
+        {{ render_field(form_speed.z1) }}
+        {{ render_field(form_speed.z2) }}
+        {{ render_field(form_speed.z3) }}
+        {{ render_field(form_speed.avs) }}
+        {{ render_field(form_speed.dst) }}
+        {{ render_field(form_speed.acctime) }}
+        {{ render_field(form_speed.accnum) }}
+        <dd><textarea class="inputText" rows="5" cols="40" name="desc">Описание тренировки</textarea></dd>
+        <dd><input type="submit" value="Добавить"></dd>
+      </dl>
+    </form>
+  </div>
   </li>
 </ul>
 {% endblock %}
