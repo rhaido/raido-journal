@@ -85,21 +85,25 @@ class TJSpeedTraining(db.Model):
   acctime = db.Column(db.String(10), nullable=False, default='00:00:00')
   accnum  = db.Column(db.Integer, nullable=False, default=0)
 
-  def __init__(self,title,route,traindate,tt,avp,mxp,z1,z2,z3,avs,kcal,desc,accnum,acctime):
-    self.title = title
-    self.route = route
-    self.traindate = traindate
-    self.tt = tt
-    self.avp = avp
-    self.mxp = mxp
-    self.z1 = z1
-    self.z2 = z2
-    self.z3 = z3
-    self.avs = avs
-    self.kcal = kcal
-    self.desc = desc
-    self.accnum = accnum
-    self.acctime = acctime
+  def __init__(self, t_attrs):
+    for k in t_attrs:
+      print "t_attr[{0}] = {1}".format(k, t_attrs[k])
+
+    if type(t_attrs) is dict:
+      self.title = t_attrs['title']
+      self.route = t_attrs['route']
+      self.traindate = t_attrs['traindate']
+      self.tt = t_attrs['tt']
+      self.avp = t_attrs['avp']
+      self.mxp = t_attrs['mxp']
+      self.z1 = t_attrs['z1']
+      self.z2 = t_attrs['z2']
+      self.z3 = t_attrs['z3']
+      self.avs = t_attrs['avs']
+      self.kcal = t_attrs['kcal']
+      self.desc = t_attrs['desc']
+      self.acctime = t_attrs['acctime']
+      self.accnum = t_attrs['accnum']
 
   def __repr__(self):
     return '<TJSpeedTraining %r>' % self.title

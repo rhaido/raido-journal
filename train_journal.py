@@ -3,7 +3,7 @@
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
-from tj_models import app, db, TJBasicTraining, TJUser
+from tj_models import app, db, TJBasicTraining, TJSpeedTraining, TJUser
 from tj_forms  import tj_tadd_basic_form, tj_tadd_speed_form, tj_user_add_form
 
 import web
@@ -22,35 +22,35 @@ def index():
 @app.route('/tdiary')
 def tdiary():
   trainings = list(TJBasicTraining.query.order_by(TJBasicTraining.traindate).all())
-  print trainings
+
+#  print trainings
+
   return render_template('tlist.html', tlist=trainings)
 
-#@app.route('/tadd', methods = ['GET','POST'])
-@app.route('/tadd', methods = ['GET','POST'])
+@app.route('/tadd', methods = ['GET'])
 def tj_tadd():
-  # tadd_form = tj_tadd_basic_form(request.form)
   tadd_form_basic = tj_tadd_basic_form(csrf_enabled=False)
   tadd_form_speed = tj_tadd_speed_form(csrf_enabled=False)
 
-  if tadd_form_basic.validate_on_submit():
-    #flash("Success")
-    print tadd_form_basic.data
+  return render_template('tadd_basic.html', form_basic = tadd_form_basic, form_speed = tadd_form_speed)
 
+@app.route('/tadd/<t_type>', methods = ['POST'])
+def tj_add_training(t_type):
+  tadd_form_basic = tj_tadd_basic_form(csrf_enabled=False)
+  tadd_form_speed = tj_tadd_speed_form(csrf_enabled=False)
+
+  if tadd_form_basic.validate_on_submit() and t_type == 'basic':
     for key in tadd_form_basic.data:
       print key, tadd_form_basic.data[key]
 
     return redirect(url_for('tdiary'))
 
-  if tadd_form_speed.validate_on_submit():
-    #flash("Success")
-    print tadd_form_speed.data
+  if tadd_form_speed.validate_on_submit() and t_type == 'speed':
+    t_attrs = tadd_form_speed.data
 
-    for key in tadd_form_speed.data:
-      print key, tadd_form_speed.data[key]
+    new_spd_trn = TJSpeedTraining(t_attrs)
 
     return redirect(url_for('tdiary'))
-
-  return render_template('tadd_basic.html', form = tadd_form_basic, form_speed = tadd_form_speed )
 
 @app.route('/uadd', methods = ['GET','POST'])
 def tj_uadd():

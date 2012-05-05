@@ -3,7 +3,7 @@
 import time
 import datetime
 
-from flask.ext.wtf import Form, BooleanField, TextField, PasswordField, DateField, validators
+from flask.ext.wtf import Form, BooleanField, TextField, TextAreaField, PasswordField, DateField, validators
 from flask.ext.wtf import Required, Length
 
 class tj_user_add_form(Form):
@@ -14,7 +14,7 @@ class tj_user_add_form(Form):
 
 class tj_tadd_basic_form(Form):
   title = TextField('Title', [validators.length(min=1,max=30)], default='This day training')
-  date  = DateField('Date', [validators.required()], format='%d.%m.%Y', default=datetime.date.today)
+  traindate  = DateField('Date', [validators.required()], format='%d.%m.%Y', default=datetime.date.today)
   route = TextField('Route', [validators.optional(), validators.length(max=200)],default='No route')
   tt    = TextField('TT', [validators.required()], default='00:00:00')
   avp   = TextField('AvP', [validators.optional()], default='0')
@@ -24,9 +24,10 @@ class tj_tadd_basic_form(Form):
   z3    = TextField('PZ', [validators.required()], default='00:00:00')
   avs   = TextField('AvS', [validators.optional()], default='0.0')
   dst   = TextField('Dst', [validators.optional()], default='0.0')
-  kcal  = TextField('KCal', [validators.optional()], default='0.0')
+  kcal  = TextField('KCal', [validators.optional()], default='0')
+  desc  = TextAreaField('', [validators.optional()], default='Training Description')
   
 class tj_tadd_speed_form(tj_tadd_basic_form):
-  acctime = TextField('AT', [validators.required()], default='00:00:00')
-  accnum  = TextField('AN', [validators.optional()], default='0')
+  acctime = TextField('AccT', [validators.required()], default='00:00:00')
+  accnum  = TextField('AccN', [validators.optional()], default='0')
 

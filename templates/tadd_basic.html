@@ -8,20 +8,21 @@
   {% include 'shorthand.html' %}
   <li><h2><a href="#" class="dashed">Добавить базовую тренировку</a></h2>
   <div class="hide">
-    <form action="{{ url_for('tj_tadd') }}" method="POST">
+    <form action="{{ url_for('tj_add_training', t_type='basic') }}" method="POST">
       <dl class="tdef terminTopAlign">
-        {{ render_field(form.title) }}
-        {{ render_field(form.date) }}
-        {{ render_field(form.route) }}
-        {{ render_field(form.tt) }}
-        {{ render_field(form.avp) }}
-        {{ render_field(form.mxp) }}
-        {{ render_field(form.z1) }}
-        {{ render_field(form.z2) }}
-        {{ render_field(form.z3) }}
-        {{ render_field(form.avs) }}
-        {{ render_field(form.dst) }}
-        <dd><textarea class="inputText" rows="5" cols="40" name="desc">Описание тренировки</textarea></dd>
+        {{ render_field(form_basic.title) }}
+        {{ render_field(form_basic.traindate) }}
+        {{ render_field(form_basic.route) }}
+        {{ render_field(form_basic.tt) }}
+        {{ render_field(form_basic.avp) }}
+        {{ render_field(form_basic.mxp) }}
+        {{ render_field(form_basic.z1) }}
+        {{ render_field(form_basic.z2) }}
+        {{ render_field(form_basic.z3) }}
+        {{ render_field(form_basic.avs) }}
+        {{ render_field(form_basic.dst) }}
+        {{ render_field(form_basic.kcal) }}
+        {{ render_field(form_basic.desc, class='inputText') }}
         <dd><input type="submit" value="Добавить"></dd>
       </dl>
     </form>
@@ -29,10 +30,10 @@
   </li>
   <li><h2><a href="#" class="dashed">Добавить скоростную тренировку</a></h2>
   <div class="hide">
-    <form action="{{ url_for('tj_tadd') }}" method="POST">
+    <form action="{{ url_for('tj_add_training', t_type='speed') }}" method="POST">
       <dl class="tdef terminTopAlign">
         {{ render_field(form_speed.title) }}
-        {{ render_field(form_speed.date) }}
+        {{ render_field(form_speed.traindate) }}
         {{ render_field(form_speed.route) }}
         {{ render_field(form_speed.tt) }}
         {{ render_field(form_speed.avp) }}
@@ -42,9 +43,10 @@
         {{ render_field(form_speed.z3) }}
         {{ render_field(form_speed.avs) }}
         {{ render_field(form_speed.dst) }}
+        {{ render_field(form_speed.kcal) }}
         {{ render_field(form_speed.acctime) }}
         {{ render_field(form_speed.accnum) }}
-        <dd><textarea class="inputText" rows="5" cols="40" name="desc">Описание тренировки</textarea></dd>
+        {{ render_field(form_speed.desc, class='inputText') }}
         <dd><input type="submit" value="Добавить"></dd>
       </dl>
     </form>
