@@ -29,5 +29,5 @@ class tj_tadd_basic_form(Form):
   
 class tj_tadd_speed_form(tj_tadd_basic_form):
   acctime = TextField('AccT', [validators.required()], default='00:00:00')
-  accnum  = TextField('AccN', [validators.optional()], default='0')
+  accnum  = TextField('AccN', [validators.optional()], default=0)
 

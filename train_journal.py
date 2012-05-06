@@ -50,6 +50,9 @@ def tj_add_training(t_type):
 
     new_spd_trn = TJSpeedTraining(t_attrs)
 
+    db.session.add(new_spd_trn)
+    db.session.commit()
+
     return redirect(url_for('tdiary'))
 
 @app.route('/uadd', methods = ['GET','POST'])
