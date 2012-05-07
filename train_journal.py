@@ -3,7 +3,7 @@
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
-from tj_models import app, db, TJBasicTraining, TJSpeedTraining, TJUser
+from tj_models import app, db, TJBasicTraining, TJSpeedTraining, TJTraining, TJUser
 from tj_forms  import tj_tadd_basic_form, tj_tadd_speed_form, tj_user_add_form
 
 import web
@@ -21,9 +21,7 @@ def index():
 
 @app.route('/tdiary')
 def tdiary():
-  trainings = list(TJBasicTraining.query.order_by(TJBasicTraining.traindate).all())
-
-#  print trainings
+  trainings = list(TJTraining.query.order_by(TJTraining.traindate.desc()).all())
 
   return render_template('tlist.html', tlist=trainings)
 
@@ -40,20 +38,51 @@ def tj_add_training(t_type):
   tadd_form_speed = tj_tadd_speed_form(csrf_enabled=False)
 
   if tadd_form_basic.validate_on_submit() and t_type == 'basic':
-    for key in tadd_form_basic.data:
-      print key, tadd_form_basic.data[key]
+    t_attrs = tadd_form_basic.data
 
-    return redirect(url_for('tdiary'))
+    title = t_attrs['title']
+    del(t_attrs['title'])
+    
+    traindate = t_attrs['traindate']
+    del(t_attrs['traindate'])
+    
+    tt = t_attrs['tt']
+    del(t_attrs['tt'])
 
-  if tadd_form_speed.validate_on_submit() and t_type == 'speed':
-    t_attrs = tadd_form_speed.data
+    desc = t_attrs['desc']
+    del(t_attrs['desc'])
 
-    new_spd_trn = TJSpeedTraining(t_attrs)
+    t_tmpl = 1
+    userid = 1
 
-    db.session.add(new_spd_trn)
+    db.session.add( TJTraining(title, userid, traindate, tt, desc, t_tmpl, t_attrs) )
     db.session.commit()
 
-    return redirect(url_for('tdiary'))
+    return redirect(url_for('tj_tadd'))
+
+  if tadd_form_speed.validate_on_submit() and t_type == 'speed':
+
+    t_attrs = tadd_form_speed.data
+
+    title = t_attrs['title']
+    del(t_attrs['title'])
+    
+    traindate = t_attrs['traindate']
+    del(t_attrs['traindate'])
+    
+    tt = t_attrs['tt']
+    del(t_attrs['tt'])
+
+    desc = t_attrs['desc']
+    del(t_attrs['desc'])
+
+    t_tmpl = 2
+    userid = 1
+    
+    db.session.add( TJTraining(title, userid, traindate, tt, desc, t_tmpl, t_attrs) )
+    db.session.commit()
+
+    return redirect(url_for('tj_tadd'))
 
 @app.route('/uadd', methods = ['GET','POST'])
 def tj_uadd():

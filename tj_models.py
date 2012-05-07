@@ -4,6 +4,8 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+import json
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://train_user:bike_train@127.0.0.1/traindb'
 app.config['CSRF_ENABLED'] = None
@@ -107,4 +109,36 @@ class TJSpeedTraining(db.Model):
 
   def __repr__(self):
     return '<TJSpeedTraining %r>' % self.title
+
+class TextPickleType(db.PickleType):
+  impl = db.Text
+
+class TJTraining(db.Model):
+  __tablename__ = 'tj_trainings'
+
+  id = db.Column(db.Integer, primary_key=True)
+  userid = db.Column(db.Integer, default='1')
+  title = db.Column(db.String(80), nullable=False)
+  traindate = db.Column(db.DateTime, default=datetime.now, nullable=False)
+  tt = db.Column(db.String(10), nullable=False, default='00:00:00')
+  desc = db.Column(db.Text, default='No description yet')
+  t_tmpl = db.Column(db.Integer, default=0)
+  props = db.Column(TextPickleType(pickler=json))
+
+  def __init__(self, title, userid, traindate, tt, desc, t_tmpl, t_attrs):
+    print title, userid, traindate, tt, desc, t_tmpl
+
+    for k in t_attrs:
+      print "t_attr[{0}] = {1}".format(k, t_attrs[k])
+
+    self.title = title
+    self.traindate = traindate
+    self.tt = tt
+    self.desc = desc
+    self.t_tmpl = t_tmpl
+
+    self.props = t_attrs
+
+  def __repr__(self):
+    return '<TJTraining %r>' % self.title
 
