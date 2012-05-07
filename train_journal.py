@@ -62,6 +62,9 @@ def tj_add_training(t_type):
 
   if tadd_form_speed.validate_on_submit() and t_type == 'speed':
 
+    print request.form
+    print tadd_form_speed
+
     t_attrs = tadd_form_speed.data
 
     title = t_attrs['title']
