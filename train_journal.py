@@ -4,11 +4,25 @@ from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 from tj_models import app, db, TJBasicTraining, TJSpeedTraining, TJTraining, TJUser
-from tj_forms  import tj_tadd_basic_form, tj_tadd_speed_form, tj_user_add_form
+from tj_forms import tj_tadd_basic_form, tj_tadd_speed_form, tj_user_add_form
 
 import web
 import time
 import os
+
+templ_1 = [
+    {'name':'route','label':'Route'},
+    {'name':'tt','label':'TT'},
+    {'name':'avp','label':'AvS'},
+    {'name':'mxp','label':'MxP'},
+    {'name':'z1','label':'Z1'},
+    {'name':'z2','label':'Z2'},
+    {'name':'z3','label':'Z3'},
+    {'name':'avs','label':'AvS'},
+    {'name':'dst','label':'Dst'},
+    {'name':'kcal','label':'KCal'},
+    {'name':'desc','label':'Desc'}
+    ]
 
 @app.template_filter('datetimeformat')
 def datetimeformat(value, format='%d.%m.%Y'):
@@ -21,7 +35,19 @@ def index():
 
 @app.route('/tdiary')
 def tdiary():
+  k = []
+
+  for i in TJTraining.query.order_by(TJTraining.traindate.desc()):
+    k.append((i,templ_1))
+
+  for z in k:
+    print z
+
   trainings = list(TJTraining.query.order_by(TJTraining.traindate.desc()).all())
+
+  for i in trainings:
+
+    print i.props.keys()
 
   return render_template('tlist.html', tlist=trainings)
 

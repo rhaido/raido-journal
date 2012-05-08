@@ -126,6 +126,7 @@ class TJTraining(db.Model):
   props = db.Column(TextPickleType(pickler=json))
 
   def __init__(self, title, userid, traindate, tt, desc, t_tmpl, t_attrs):
+    print "__init__():"
     print title, userid, traindate, tt, desc, t_tmpl
 
     for k in t_attrs:

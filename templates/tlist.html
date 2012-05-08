@@ -10,7 +10,6 @@
         <li>
           <h2><a href="#" class="dashed">{{ k.traindate | datetimeformat | e }} - {{ k.title | e }}</a></h2>
           <div class="hide">
-            <p>{{ k.desc | e }}</p>
             <dl class="tlist">
               <dt>Route</dt>
               <dd>{{ k.props.route | e }}</dd>
@@ -36,7 +35,9 @@
               <dd>{{ k.props.dst | e }}</dd>
               <dt>KCal</dt>
               <dd>{{ k.props.kcal | e }}</dd>
+              <dd>{{ k.desc | e }}</dd>
             </dl>
+            <p>{{ k.desc | e }}</p>
           </div>
         </li>
         {% endfor %}
