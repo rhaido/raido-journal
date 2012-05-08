@@ -10,9 +10,13 @@ import web
 import time
 import os
 
+from flask.ext.markdown import Markdown
+
+Markdown(app)
+
 templ_1 = [
     {'name':'route','label':'Route'},
-    {'name':'tt','label':'TT'},
+    #{'name':'tt','label':'TT'},
     {'name':'avp','label':'AvS'},
     {'name':'mxp','label':'MxP'},
     {'name':'z1','label':'Z1'},
@@ -21,7 +25,21 @@ templ_1 = [
     {'name':'avs','label':'AvS'},
     {'name':'dst','label':'Dst'},
     {'name':'kcal','label':'KCal'},
-    {'name':'desc','label':'Desc'}
+    #{'name':'desc','label':'Desc'}
+    ]
+
+templ_2 = [
+    {'name':'route','label':'Route'},
+    {'name':'avp','label':'AvS'},
+    {'name':'mxp','label':'MxP'},
+    {'name':'z1','label':'Z1'},
+    {'name':'z2','label':'Z2'},
+    {'name':'z3','label':'Z3'},
+    {'name':'avs','label':'AvS'},
+    {'name':'dst','label':'Dst'},
+    {'name':'kcal','label':'KCal'},
+    {'name':'accnum','label':'AccN'},
+    {'name':'acctime','label':'AccT'}
     ]
 
 @app.template_filter('datetimeformat')
@@ -34,20 +52,27 @@ def index():
   return render_template('index.html')
 
 @app.route('/tdiary')
-def tdiary():
-  k = []
+def betadiary():
+  training_list = []
 
-  for i in TJTraining.query.order_by(TJTraining.traindate.desc()):
-    k.append((i,templ_1))
+  from collections import namedtuple
 
-  for z in k:
+  Pair = namedtuple('Pair', ['tj_training', 'output_template'])
+
+  for trn in TJTraining.query.order_by(TJTraining.traindate.desc()):
+    if trn.t_tmpl == 1:
+      training_list.append(Pair(tj_training=trn,output_template=templ_1))
+    elif trn.t_tmpl == 2:
+      training_list.append(Pair(tj_training=trn,output_template=templ_2))
+
+  for z in training_list:
     print z
 
+  return render_template('tlist-beta.html', tlist=training_list)
+
+@app.route('/old-tdiary')
+def tdiary():
   trainings = list(TJTraining.query.order_by(TJTraining.traindate.desc()).all())
-
-  for i in trainings:
-
-    print i.props.keys()
 
   return render_template('tlist.html', tlist=trainings)
 
@@ -56,7 +81,7 @@ def tj_tadd():
   tadd_form_basic = tj_tadd_basic_form(csrf_enabled=False)
   tadd_form_speed = tj_tadd_speed_form(csrf_enabled=False)
 
-  return render_template('tadd_basic.html', form_basic = tadd_form_basic, form_speed = tadd_form_speed)
+  return render_template('tadd.html', form_basic = tadd_form_basic, form_speed = tadd_form_speed)
 
 @app.route('/tadd/<t_type>', methods = ['POST'])
 def tj_add_training(t_type):

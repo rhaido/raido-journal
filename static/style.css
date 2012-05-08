@@ -21,7 +21,7 @@ a:visited { color: #f4c464; border-bottom: none; }
 a:hover { border-bottom: 1px dotted; }
 a:active { color:#940000; }
 
-strong{ color: white }
+/* strong{ color: white } */
 
 #logo { right: 0; width: 100px; height: 100px; background: url("/static/gif/raido.gif") no-repeat; float: right; text-indent: -9999999px; padding-left: 40px; }
 
@@ -101,9 +101,9 @@ dl.tdef dt { float: left; margin-top: 5px; }
 dl.tdef dd { margin-top: 5px; margin-left: 3em; }
 
 /* dl.tlist { width: 120px; float: left; padding-left: 30px; } */
-dl.tlist { width: 120px; padding-left: 30px; }
+dl.tlist { width: 140px; padding-left: 30px; }
 dl.tlist dt { float: left; color: #000; padding-top: 5px; }
-dl.tlist dd { margin-left: 5em; padding-top: 5px; }
+dl.tlist dd { margin-left: 4em; padding-top: 5px; }
 
 /***************** contacts style *******************/
 #contacts { margin-bottom: 2em; }

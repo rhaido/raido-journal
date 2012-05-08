@@ -21,10 +21,13 @@
 <div id="container">
 <div id="header">
   <a href="/"><h1 id="logo">Raido</h1></a>
-  <ul>{% for href, title, caption in navigation_bar%}
-  <li>
-      <a href="{{ href|e }}" title="{{ title|e }}">{% if title == active_page %}<span>{% endif %}{{ caption | e }}{% if title == active_page %}</span>{% endif %}</a>
-  </li>{% endfor %}  
+  <ul>
+  {% for href, title, caption in navigation_bar -%}
+  <li><a href="{{ href|e }}" title="{{ title|e }}">
+    {%- if title == active_page %}<span>{% endif -%}
+      {{ caption | e }}
+    {%- if title == active_page %}</span>{% endif %}</a></li>
+  {% endfor -%}  
   </ul>
 </div>
 
@@ -32,8 +35,8 @@
 <div id="content">{% block content %}{% endblock %}</div>
 
 <div id="footer">
-    <p>Copyright &copy; Raido</br></p>
-    <p id="infolio">Создание сайта</a> &mdash; <a href="http://www.raido.ru/">Mike Grozak</a></p>
+  <p>Copyright &copy; Raido</br></p>
+  <p id="infolio">Создание сайта</a> &mdash; <a href="http://www.raido.ru/">Mike Grozak</a></p>
 </div>
 
 </div>

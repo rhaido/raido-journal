@@ -25,7 +25,7 @@ class tj_tadd_basic_form(Form):
   avs   = TextField('AvS', [validators.optional()], default='0.0')
   dst   = TextField('Dst', [validators.optional()], default='0.0')
   kcal  = TextField('KCal', [validators.optional()], default='0')
-  Desc  = TextAreaField('', [validators.optional()], default='Training Description')
+  desc  = TextAreaField('', [validators.optional()], default='Training Description')
   
 class tj_tadd_speed_form(tj_tadd_basic_form):
   acctime = TextField('AccT', [validators.required()], default='00:00:00')

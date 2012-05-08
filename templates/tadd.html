@@ -1,39 +1,52 @@
 {% extends "layout.html" %}
 {% set active_page='Add' %}
+{% from "_formhelpers.html" import render_field %}
 
 {% block content %}
 {% if error %}<p class=error><strong>Error:</strong> {{ error }}</p>{% endif %}
 <ul class="details">
   {% include 'shorthand.html' %}
-  <li><h2><a href="#">Заполните форму и нажмите кнопку 'Добавить'</a></h2>
+  <li><h2><a href="#" class="dashed">Добавить базовую тренировку</a></h2>
   <div class="hide">
-    <form action="{{ url_for('tadd') }}" method="POST">
+    <form action="{{ url_for('tj_add_training', t_type='basic') }}" method="POST">
       <dl class="tdef terminTopAlign">
-        <dt>Date</dt>
-        <dd><input type="text" name="traindate"></dd>
-        <dt>Title</dt>
-        <dd><input type="text" name="title"></dd>
-        <dt>Route</dt>
-        <dd><input type="text" name="route"></dd>
-        <dt>TT</dt>
-        <dd><input type="text" name="traintime"></dd>
-        <dt>AvP</dt>
-        <dd><input type="text" name="avp"></dd>
-        <dt>MxP</dt>
-        <dd><input type="text" name="mxp"></dd>
-        <dt>HZ</dt>
-        <dd><input type="text" name="hz"></dd>
-        <dt>FZ</dt>
-        <dd><input type="text" name="fz"></dd>
-        <dt>PZ</dt>
-        <dd><input type="text" name="pz"></dd>
-        <dt>AvS</dt>
-        <dd><input type="text" name="avs"></dd>
-        <dt>Dst</dt>
-        <dd><input type="text" name="dst"></dd>
-        <dt>KCal</dt>
-        <dd><input type="text" name="kcal"></dd>
-        <dd><textarea class="inputText" rows="5" cols="40" name="desc">Описание тренировки</textarea></dd>
+        {{ render_field(form_basic.title) }}
+        {{ render_field(form_basic.traindate) }}
+        {{ render_field(form_basic.route) }}
+        {{ render_field(form_basic.tt) }}
+        {{ render_field(form_basic.avp) }}
+        {{ render_field(form_basic.mxp) }}
+        {{ render_field(form_basic.z1) }}
+        {{ render_field(form_basic.z2) }}
+        {{ render_field(form_basic.z3) }}
+        {{ render_field(form_basic.avs) }}
+        {{ render_field(form_basic.dst) }}
+        {{ render_field(form_basic.kcal) }}
+        {{ render_field(form_basic.desc, class='inputText') }}
+        <dd><input type="submit" value="Добавить"></dd>
+      </dl>
+    </form>
+  </div>
+  </li>
+  <li><h2><a href="#" class="dashed">Добавить скоростную тренировку</a></h2>
+  <div class="hide">
+    <form action="{{ url_for('tj_add_training', t_type='speed') }}" method="POST">
+      <dl class="tdef terminTopAlign">
+        {{ render_field(form_speed.title) }}
+        {{ render_field(form_speed.traindate) }}
+        {{ render_field(form_speed.route) }}
+        {{ render_field(form_speed.tt) }}
+        {{ render_field(form_speed.avp) }}
+        {{ render_field(form_speed.mxp) }}
+        {{ render_field(form_speed.z1) }}
+        {{ render_field(form_speed.z2) }}
+        {{ render_field(form_speed.z3) }}
+        {{ render_field(form_speed.avs) }}
+        {{ render_field(form_speed.dst) }}
+        {{ render_field(form_speed.kcal) }}
+        {{ render_field(form_speed.acctime) }}
+        {{ render_field(form_speed.accnum) }}
+        {{ render_field(form_speed.desc, class='inputText') }}
         <dd><input type="submit" value="Добавить"></dd>
       </dl>
     </form>
