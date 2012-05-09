@@ -16,3 +16,8 @@ pip install flask uwsgi flask-sqlalchemy sqlalchemy psycopg2
 # createdb --help
 # createdb -O train_user traindb
 
+# NERD tree installation
+# cd ~/.vim
+# git clone git://github.com/scrooloose/nerdtree.git
+
+# http://www.catonmat.net/blog/vim-plugins-nerdtree-vim/
