@@ -138,13 +138,46 @@ def tj_add_training(t_type):
 
     return redirect(url_for('tj_tadd'))
 
-@app.route('/tdel/<t_id>', methods = ['GET'])
-def tj_t_del():
-  pass
+@app.route('/tdel/<int:t_id>', methods = ['GET'])
+def tj_t_del(t_id):
+  import sys
 
-@app.route('/tedit/<t_id>', methods = ['GET'])
-def tj_t_edit():
-  pass
+  if isinstance(t_id, (long, int)):
+    tmp = TJTraining.query.filter_by(id=t_id).first()
+
+    if tmp:
+      try:
+        db.session.delete(tmp)
+      except:
+        print "Unexpected error:", sys.exc_info()[0]
+      else:
+        db.session.commit()
+
+  return redirect(url_for('betadiary'))
+
+@app.route('/tedit/<int:t_id>', methods = ['GET'])
+def tj_t_edit(t_id):
+  if isinstance(t_id, (long, int)):
+    k = TJTraining.query.filter_by(id=t_id).first()
+
+    if k:
+      from collections import namedtuple
+
+      Pair = namedtuple('Pair', ['tj_training', 'output_template'])
+      
+      t_f_edit = None
+
+      if k.t_tmpl == 1:
+        t_f_edit = Pair(tj_training = k, output_template = templ_1)
+      elif k.t_tmpl == 2:
+        t_f_edit = Pair(tj_training = k, output_template = templ_2)
+
+      if t_f_edit:
+        print "+ t_f_edit = ", t_f_edit
+
+        #return render_template('tedit.html', training = t_f_edit) 
+
+  return redirect(url_for('betadiary'))
 
 @app.route('/uadd', methods = ['GET','POST'])
 def tj_uadd():
