@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% set active_page='Training Diary' %}
+
+{% block content %}
+<p>Прошедшие тренировки по датам:</p>
+<!-- http://www.maxdesign.com.au/articles/definition/ -->
+<ul class="details">
+{% include 'shorthand.html' -%}
+{% for wk in tlist -%}
+<li>
+  <h2><a href="#" class="dashed">{{ wk.tj_training.traindate | datetimeformat | e }} - {{ wk.tj_training.title | e }}</a>
+    &nbsp;<a href="/tedit/{{ wk.tj_training.id }}">&#43;</a>&nbsp;<a href="/tdel/{{ wk.tj_training.id }}">&times;</a></h2>
+  <div class="hide">
+    {{ wk.tj_training.desc | markdown }}
+    <dl class="tlist">
+      <dt>TT</dt>
+      <dd>{{ wk.tj_training.tt }}</dd>
+      {% for attr in wk.output_template -%}
+      <dt>{{ attr['label'] }}</dt>
+      <dd>{{ wk.tj_training.props[ attr['name'] ] }}</dd>
+      {% endfor -%}
+    </dl>
+  </div>
+</li>
+{% endfor -%}
+</ul>
+{% endblock %}

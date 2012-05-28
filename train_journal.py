@@ -138,6 +138,14 @@ def tj_add_training(t_type):
 
     return redirect(url_for('tj_tadd'))
 
+@app.route('/tdel/<t_id>', methods = ['GET'])
+def tj_t_del():
+  pass
+
+@app.route('/tedit/<t_id>', methods = ['GET'])
+def tj_t_edit():
+  pass
+
 @app.route('/uadd', methods = ['GET','POST'])
 def tj_uadd():
   uadd_form = tj_user_add_form(csrf_enabled=False)
