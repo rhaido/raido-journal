@@ -141,5 +141,8 @@ class TJTraining(db.Model):
     self.props = t_attrs
 
   def __repr__(self):
+    for k in self.props:
+      print "t_attr[{0}] = {1}".format(k, self.props[k])
+
     return '<TJTraining %r>' % self.title
 

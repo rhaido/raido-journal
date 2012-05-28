@@ -160,6 +160,8 @@ def tj_t_edit(t_id):
   if isinstance(t_id, (long, int)):
     k = TJTraining.query.filter_by(id=t_id).first()
 
+    print k
+
     if k:
       from collections import namedtuple
 
