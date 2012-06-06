@@ -155,14 +155,31 @@ def tj_t_del(t_id):
 
   return redirect(url_for('betadiary'))
 
-@app.route('/tedit/<int:t_id>', methods = ['GET'])
+@app.route('/tedit/<int:t_id>', methods = ['GET','POST'])
 def tj_t_edit(t_id):
+  from flask.ext.wtf import Form
+  from tj_models import TJTraining
+  from wtforms.ext.sqlalchemy.orm import model_form
+
+  MyForm = model_form(TJTraining, Form)
+
   if isinstance(t_id, (long, int)):
-    k = TJTraining.query.filter_by(id=t_id).first()
+    model = TJTraining.query.filter_by(id=t_id).first()
+    form = MyForm(request.form, model)
 
-    print k
+    if form.validate_on_submit():
+      form.populate_obj(model)
+      db.session.commit()
+      return redirect(url_for('betadiary'))
 
-    if k:
+    print form
+    #print form.props
+
+    return render_template("tedit.html", form_basic = form, t_f_id = t_id)
+
+  #print k
+
+  """if k:
       from collections import namedtuple
 
       Pair = namedtuple('Pair', ['tj_training', 'output_template'])
@@ -177,9 +194,8 @@ def tj_t_edit(t_id):
       if t_f_edit:
         print "+ t_f_edit = ", t_f_edit
 
-        #return render_template('tedit.html', training = t_f_edit) 
+        #return render_template('tedit.html', training = t_f_edit)"""
 
-  return redirect(url_for('betadiary'))
 
 @app.route('/uadd', methods = ['GET','POST'])
 def tj_uadd():

@@ -6,21 +6,18 @@
 {% if error %}<p class=error><strong>Error:</strong> {{ error }}</p>{% endif %}
 <ul class="details">
   {% include 'shorthand.html' %}
-  <li><h2><a href="#">Edit training</a></h2>
-  <p>
-    <form action="{{ url_for('tj_add_training', t_type='basic') }}" method="POST">
+  <li><h2><a href="#" class="dashed">Edit training</a></h2>
+  <div class="hide">
+    <form action="{{ url_for('tj_t_edit', t_id=t_f_id) }}" method="POST">
       <dl class="tdef terminTopAlign">
         {{ render_field(form_basic.title) }}
         {{ render_field(form_basic.traindate) }}
         {{ render_field(form_basic.tt) }}
-        {{ render_field(form_basic.avs) }}
-        {{ render_field(form_basic.dst) }}
-        {{ render_field(form_basic.kcal) }}
         {{ render_field(form_basic.desc, class='inputText') }}
         <dd><input type="submit" value="Save"></dd>
       </dl>
     </form>
-  </p>
+  </div>
   </li>
 </ul>
 {% endblock %}
