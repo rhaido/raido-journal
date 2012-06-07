@@ -10,10 +10,16 @@
   <div class="hide">
     <form action="{{ url_for('tj_t_edit', t_id=t_f_id) }}" method="POST">
       <dl class="tdef terminTopAlign">
-        {{ render_field(form_basic.title) }}
-        {{ render_field(form_basic.traindate) }}
-        {{ render_field(form_basic.tt) }}
-        {{ render_field(form_basic.desc, class='inputText') }}
+        {% for attr in output_template -%}
+          {% if attr['name'] == 'desc' -%}
+            {{ render_field(form[ attr['name'] ], class='inputText') }}
+          {% else -%}
+            {{ render_field(form[ attr['name'] ]) }}
+          {% endif -%}
+        {% endfor -%}
+        <!--  {{ render_field(form.traindate) }}
+          {{ render_field(form.tt) }}
+          {{ render_field(form.desc, class='inputText') }} -->
         <dd><input type="submit" value="Save"></dd>
       </dl>
     </form>

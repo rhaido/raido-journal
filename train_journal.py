@@ -15,8 +15,10 @@ from flask.ext.markdown import Markdown
 Markdown(app)
 
 templ_1 = [
+    {'name':'title','label':'Title'},
+    {'name':'traindate','label':'Date'},
     {'name':'route','label':'Route'},
-    #{'name':'tt','label':'TT'},
+    {'name':'tt','label':'TT'},
     {'name':'avp','label':'AvS'},
     {'name':'mxp','label':'MxP'},
     {'name':'z1','label':'Z1'},
@@ -25,10 +27,12 @@ templ_1 = [
     {'name':'avs','label':'AvS'},
     {'name':'dst','label':'Dst'},
     {'name':'kcal','label':'KCal'},
-    #{'name':'desc','label':'Desc'}
+    {'name':'desc','label':'Desc'}
     ]
 
 templ_2 = [
+    {'name':'title','label':'Title'},
+    {'name':'traindate','label':'Date'},
     {'name':'route','label':'Route'},
     {'name':'avp','label':'AvS'},
     {'name':'mxp','label':'MxP'},
@@ -39,7 +43,8 @@ templ_2 = [
     {'name':'dst','label':'Dst'},
     {'name':'kcal','label':'KCal'},
     {'name':'accnum','label':'AccN'},
-    {'name':'acctime','label':'AccT'}
+    {'name':'acctime','label':'AccT'},
+    {'name':'desc','label':'Desc'}
     ]
 
 @app.template_filter('datetimeformat')
@@ -157,27 +162,27 @@ def tj_t_del(t_id):
 
 @app.route('/tedit/<int:t_id>', methods = ['GET','POST'])
 def tj_t_edit(t_id):
-  from flask.ext.wtf import Form
-  from tj_models import TJTraining
-  from wtforms.ext.sqlalchemy.orm import model_form
-
-  MyForm = model_form(TJTraining, Form)
-
   if isinstance(t_id, (long, int)):
     model = TJTraining.query.filter_by(id=t_id).first()
-    form = MyForm(request.form, model)
 
-    if form.validate_on_submit():
-      form.populate_obj(model)
-      db.session.commit()
-      return redirect(url_for('betadiary'))
+    if model:
+      t_attrs = model.props
+      t_attrs['title'] = model.title
+      t_attrs['traindate'] = model.traindate
+      t_attrs['tt'] = model.tt
+      t_attrs['desc'] = model.desc
 
-    print form
-    #print form.props
+      td = type('TestClass', (), t_attrs)
 
-    return render_template("tedit.html", form_basic = form, t_f_id = t_id)
+      if model.t_tmpl == 1:
+        eform = tj_tadd_basic_form(obj = td)
+        etmpl = templ_1
 
-  #print k
+      if model.t_tmpl == 2:
+        eform = tj_tadd_speed_form(obj = td)
+        etmpl = templ_2
+
+      return render_template("tedit.html", form = eform, t_f_id = t_id, output_template = etmpl)
 
   """if k:
       from collections import namedtuple
