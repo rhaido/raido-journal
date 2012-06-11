@@ -10,9 +10,10 @@
 </head>
 
 {% set navigation_bar = [
-  ('/', 'Main', 'Главная'),
-  ('/tdiary','Training Diary','Дневник'),
-  ('/tadd','Add','Добавить'),
+  ('/', 'Main', 'Main'),
+  ('/tdiary','Training Diary','Training Diary'),
+  ('/login','Log In','Log In'),
+  ('/logout','Log Out','Log Out'),
 ] -%}
 
 {% set active_page = active_page | default('Main') -%}

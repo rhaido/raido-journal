@@ -14,6 +14,12 @@ from flask.ext.markdown import Markdown
 
 Markdown(app)
 
+USERNAME = 'mike'
+PASSWORD = 'PassWord'
+SECRET_KEY = 'very secret key'
+
+app.config.from_object(__name__)
+
 templ_1 = [
     {'name':'title','label':'Title'},
     {'name':'traindate','label':'Date'},
@@ -34,6 +40,7 @@ templ_2 = [
     {'name':'title','label':'Title'},
     {'name':'traindate','label':'Date'},
     {'name':'route','label':'Route'},
+    {'name':'tt','label':'TT'},
     {'name':'avp','label':'AvS'},
     {'name':'mxp','label':'MxP'},
     {'name':'z1','label':'Z1'},
@@ -83,7 +90,7 @@ def tj_tadd():
   return render_template('tadd.html', form_basic = tadd_form_basic, form_speed = tadd_form_speed)
 
 @app.route('/tadd/<t_type>', methods = ['POST'])
-def tj_add_training(t_type):
+def tj_add_training(t_type=None):
   tadd_form_basic = tj_tadd_basic_form(csrf_enabled=False)
   tadd_form_speed = tj_tadd_speed_form(csrf_enabled=False)
 
@@ -117,7 +124,7 @@ def tj_add_training(t_type):
   return redirect(url_for('tj_tadd'))
 
 @app.route('/tdel/<int:t_id>', methods = ['GET'])
-def tj_t_del(t_id):
+def tj_t_del(t_id=None):
   import sys
 
   if isinstance(t_id, (long, int)):
@@ -208,6 +215,25 @@ def tj_ulist():
 
   return render_template('user_list.html', userlist=usrs)
   
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != app.config['USERNAME']:
+            error = 'Invalid username'
+        elif request.form['password'] != app.config['PASSWORD']:
+            error = 'Invalid password'
+        else:
+            session['logged_in'] = True
+            flash('You were logged in')
+            return redirect(url_for('tdiary'))
+    return render_template('login.html', error=error)
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash('You were logged out')
+    return redirect(url_for('tdiary'))
 
 @app.route('/hello')
 def hello():
