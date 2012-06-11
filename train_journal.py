@@ -57,7 +57,7 @@ def index():
   return render_template('index.html')
 
 @app.route('/tdiary')
-def betadiary():
+def tdiary():
   training_list = []
 
   from collections import namedtuple
@@ -70,16 +70,10 @@ def betadiary():
     elif trn.t_tmpl == 2:
       training_list.append(Pair(tj_training=trn,output_template=templ_2))
 
-  for z in training_list:
-    print z
+  #for z in training_list:
+  #  print z
 
-  return render_template('tlist-beta.html', tlist=training_list)
-
-@app.route('/old-tdiary')
-def tdiary():
-  trainings = list(TJTraining.query.order_by(TJTraining.traindate.desc()).all())
-
-  return render_template('tlist.html', tlist=trainings)
+  return render_template('tlist.html', tlist=training_list)
 
 @app.route('/tadd', methods = ['GET'])
 def tj_tadd():
@@ -93,55 +87,34 @@ def tj_add_training(t_type):
   tadd_form_basic = tj_tadd_basic_form(csrf_enabled=False)
   tadd_form_speed = tj_tadd_speed_form(csrf_enabled=False)
 
+  userid = 1
+
+  t_attrs = None
+
   if tadd_form_basic.validate_on_submit() and t_type == 'basic':
     t_attrs = tadd_form_basic.data
-
-    title = t_attrs['title']
-    del(t_attrs['title'])
-    
-    traindate = t_attrs['traindate']
-    del(t_attrs['traindate'])
-    
-    tt = t_attrs['tt']
-    del(t_attrs['tt'])
-
-    desc = t_attrs['desc']
-    del(t_attrs['desc'])
-
     t_tmpl = 1
-    userid = 1
-
-    db.session.add( TJTraining(title, userid, traindate, tt, desc, t_tmpl, t_attrs) )
-    db.session.commit()
-
-    return redirect(url_for('tj_tadd'))
-
-  if tadd_form_speed.validate_on_submit() and t_type == 'speed':
-
-    print request.form
-    print tadd_form_speed
-
+  elif tadd_form_speed.validate_on_submit() and t_type == 'speed':
     t_attrs = tadd_form_speed.data
-
+    t_tmpl = 2
+    
+  if t_attrs:
     title = t_attrs['title']
     del(t_attrs['title'])
-    
+
     traindate = t_attrs['traindate']
     del(t_attrs['traindate'])
-    
+
     tt = t_attrs['tt']
     del(t_attrs['tt'])
 
     desc = t_attrs['desc']
     del(t_attrs['desc'])
 
-    t_tmpl = 2
-    userid = 1
-    
     db.session.add( TJTraining(title, userid, traindate, tt, desc, t_tmpl, t_attrs) )
     db.session.commit()
 
-    return redirect(url_for('tj_tadd'))
+  return redirect(url_for('tj_tadd'))
 
 @app.route('/tdel/<int:t_id>', methods = ['GET'])
 def tj_t_del(t_id):
@@ -158,7 +131,7 @@ def tj_t_del(t_id):
       else:
         db.session.commit()
 
-  return redirect(url_for('betadiary'))
+  return redirect(url_for('tdiary'))
 
 @app.route('/tedit/<int:t_id>', methods = ['GET','POST'])
 def tj_t_edit(t_id):
@@ -172,35 +145,41 @@ def tj_t_edit(t_id):
       t_attrs['tt'] = model.tt
       t_attrs['desc'] = model.desc
 
-      td = type('TestClass', (), t_attrs)
+      td = type('TJTeditModelClass', (), t_attrs)
 
       if model.t_tmpl == 1:
         eform = tj_tadd_basic_form(obj = td)
         etmpl = templ_1
-
-      if model.t_tmpl == 2:
+      elif model.t_tmpl == 2:
         eform = tj_tadd_speed_form(obj = td)
         etmpl = templ_2
 
+      print eform.data
+
+      print eform.validate_on_submit()
+
+      if eform.validate_on_submit():
+        t_attrs = eform.data
+
+        model.title = t_attrs['title']
+        del(t_attrs['title'])
+    
+        model.traindate = t_attrs['traindate']
+        del(t_attrs['traindate'])
+    
+        model.tt = t_attrs['tt']
+        del(t_attrs['tt'])
+
+        model.desc = t_attrs['desc']
+        del(t_attrs['desc'])
+
+        model.props = t_attrs
+
+        db.session.commit()
+        
+        return redirect(url_for('tdiary'))
+
       return render_template("tedit.html", form = eform, t_f_id = t_id, output_template = etmpl)
-
-  """if k:
-      from collections import namedtuple
-
-      Pair = namedtuple('Pair', ['tj_training', 'output_template'])
-      
-      t_f_edit = None
-
-      if k.t_tmpl == 1:
-        t_f_edit = Pair(tj_training = k, output_template = templ_1)
-      elif k.t_tmpl == 2:
-        t_f_edit = Pair(tj_training = k, output_template = templ_2)
-
-      if t_f_edit:
-        print "+ t_f_edit = ", t_f_edit
-
-        #return render_template('tedit.html', training = t_f_edit)"""
-
 
 @app.route('/uadd', methods = ['GET','POST'])
 def tj_uadd():

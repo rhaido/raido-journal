@@ -6,8 +6,7 @@
 {% if error %}<p class=error><strong>Error:</strong> {{ error }}</p>{% endif %}
 <ul class="details">
   {% include 'shorthand.html' %}
-  <li><h2><a href="#" class="dashed">Edit training</a></h2>
-  <div class="hide">
+  <li><h2><a href="#">Edit training</a></h2>
     <form action="{{ url_for('tj_t_edit', t_id=t_f_id) }}" method="POST">
       <dl class="tdef terminTopAlign">
         {% for attr in output_template -%}
@@ -17,13 +16,10 @@
             {{ render_field(form[ attr['name'] ]) }}
           {% endif -%}
         {% endfor -%}
-        <!--  {{ render_field(form.traindate) }}
-          {{ render_field(form.tt) }}
-          {{ render_field(form.desc, class='inputText') }} -->
         <dd><input type="submit" value="Save"></dd>
       </dl>
     </form>
-  </div>
+
   </li>
 </ul>
 {% endblock %}

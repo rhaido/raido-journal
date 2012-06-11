@@ -16,7 +16,7 @@
       <dt>TT</dt>
       <dd>{{ wk.tj_training.tt }}</dd>
       {% for attr in wk.output_template -%}
-      {% if attr['name'] not in ['traindate', 'title', 'desc'] -%}
+      {% if attr['name'] not in ['traindate', 'title', 'desc', 'tt'] -%}
       <dt>{{ attr['label'] }}</dt>
       <dd>{{ wk.tj_training.props[ attr['name'] ] }}</dd>
       {% endif -%}
