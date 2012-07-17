@@ -6,7 +6,6 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 from tj_models import app, db, TJBasicTraining, TJSpeedTraining, TJTraining, TJUser
 from tj_forms import tj_tadd_basic_form, tj_tadd_speed_form, tj_user_add_form
 
-import web
 import time
 import os
 
