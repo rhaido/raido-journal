@@ -9,11 +9,15 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/utils.js')}}"></script>
 </head>
 
+{% from "_formhelpers.html" import menu_field %}
+
+{# href, title, caption, always display menu entry, display only if user is logged in #}
 {% set navigation_bar = [
-  ('/', 'Main', 'Main'),
-  ('/tdiary','Training Diary','Training Diary'),
-  ('/login','Log In','Log In'),
-  ('/logout','Log Out','Log Out'),
+  ('/', 'Main', 'Main',True,True),
+  ('/tdiary','Diary','Diary',True,True),
+  ('/tadd','Add','Add', False, True),
+  ('/login','In','In', True, False),
+  ('/logout','Out','Out', False, True),
 ] -%}
 
 {% set active_page = active_page | default('Main') -%}
@@ -23,11 +27,13 @@
 <div id="header">
   <a href="/"><h1 id="logo">Raido</h1></a>
   <ul>
-  {% for href, title, caption in navigation_bar -%}
-  <li><a href="{{ href|e }}" title="{{ title|e }}">
-    {%- if title == active_page %}<span>{% endif -%}
-      {{ caption | e }}
-    {%- if title == active_page %}</span>{% endif %}</a></li>
+  {% for href,title,caption,always,lgd in navigation_bar -%}
+  {%- if ( always == True and lgd == True )
+      or (session.logged_in == True and always == False and lgd == True)
+      or (not session.logged_in and always == True and lgd == False)
+  -%}
+      {{ menu_field(href,title,caption,active_page) }}
+    {%- endif -%}
   {% endfor -%}  
   </ul>
 </div>

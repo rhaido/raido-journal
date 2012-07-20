@@ -7,3 +7,10 @@
 {% endfor %}
 </ul>
 {% endif -%}</dd>{% endmacro %}
+
+{% macro menu_field(href,title,caption,active_page) %}
+<li><a href="{{ href | e }}" title="{{ title | e }}">
+{%- if title == active_page %}<span>{% endif -%}
+      {{ caption | e }}
+    {%- if title == active_page %}</span>{% endif %}</a></li>
+{% endmacro %}
