@@ -83,6 +83,9 @@ def tdiary():
 
 @app.route('/tadd', methods = ['GET'])
 def tj_tadd():
+  if not ('logged_in' in session and 'username' in session):
+    return redirect(url_for('index'))
+
   tadd_form_basic = tj_tadd_basic_form(csrf_enabled=False)
   tadd_form_speed = tj_tadd_speed_form(csrf_enabled=False)
 
@@ -90,6 +93,9 @@ def tj_tadd():
 
 @app.route('/tadd/<t_type>', methods = ['POST'])
 def tj_add_training(t_type=None):
+  if not ('logged_in' in session and 'username' in session):
+    return redirect(url_for('index'))
+
   tadd_form_basic = tj_tadd_basic_form(csrf_enabled=False)
   tadd_form_speed = tj_tadd_speed_form(csrf_enabled=False)
 
@@ -124,6 +130,9 @@ def tj_add_training(t_type=None):
 
 @app.route('/tdel/<int:t_id>', methods = ['GET'])
 def tj_t_del(t_id=None):
+  if not ('logged_in' in session and 'username' in session):
+    return redirect(url_for('index'))
+
   import sys
 
   if isinstance(t_id, (long, int)):
@@ -141,6 +150,9 @@ def tj_t_del(t_id=None):
 
 @app.route('/tedit/<int:t_id>', methods = ['GET','POST'])
 def tj_t_edit(t_id):
+  if not ('logged_in' in session and 'username' in session):
+    return redirect(url_for('index'))
+
   if isinstance(t_id, (long, int)):
     model = TJTraining.query.filter_by(id=t_id).first()
 
@@ -189,6 +201,9 @@ def tj_t_edit(t_id):
 
 @app.route('/uadd', methods = ['GET','POST'])
 def tj_uadd():
+  if not ('logged_in' in session and 'username' in session):
+    return redirect(url_for('index'))
+
   uadd_form = tj_user_add_form(csrf_enabled=False)
 
   if uadd_form.validate_on_submit():
@@ -223,6 +238,7 @@ def login():
         elif request.form['password'] != app.config['PASSWORD']:
             error = 'Invalid password'
         else:
+            session['username'] = request.form['username']
             session['logged_in'] = True
             flash('You were logged in')
             return redirect(url_for('tdiary'))
@@ -231,6 +247,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
+    session.pop('username', None)
     flash('You were logged out')
     return redirect(url_for('tdiary'))
 

@@ -13,7 +13,7 @@ class tj_user_add_form(Form):
   email    = TextField('Email*', validators=[Required(), Length(min=1,max=40)])
 
 class tj_tadd_basic_form(Form):
-  title = TextField('Title', [validators.length(min=1,max=30)], default='This day training')
+  title = TextField('Title', [validators.length(min=1,max=250)], default='This day training')
   traindate  = DateField('Date', [validators.required()], format='%d.%m.%Y', default=datetime.date.today)
   route = TextField('Route', [validators.optional(), validators.length(max=200)],default='No route')
   tt    = TextField('TT', [validators.required()], default='00:00:00')
