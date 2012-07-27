@@ -6,8 +6,8 @@ def numCPUs():
   return os.sysconf("SC_NPROCESSORS_ONLN")
   
 bind = "0.0.0.0:9000"
-workers = numCPUs() * 2 + 1
-backlog = 2048
+workers = numCPUs()
+backlog = 128 
 #worker_class ="sync"
 worker_class =  "gevent"
 debug = True
