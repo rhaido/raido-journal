@@ -1,4 +1,4 @@
-# -*- coding: UTF-* -*-
+# -*- encoding: utf-8 -*-
 
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
@@ -24,7 +24,7 @@ templ_1 = [
     {'name':'traindate','label':'Date'},
     {'name':'route','label':'Route'},
     {'name':'tt','label':'TT'},
-    {'name':'avp','label':'AvS'},
+    {'name':'avp','label':'AvP'},
     {'name':'mxp','label':'MxP'},
     {'name':'z1','label':'Z1'},
     {'name':'z2','label':'Z2'},
@@ -95,6 +95,8 @@ def tj_tadd():
 def tj_add_training(t_type=None):
   if not ('logged_in' in session and 'username' in session):
     return redirect(url_for('index'))
+
+  print "/tadd"
 
   tadd_form_basic = tj_tadd_basic_form(csrf_enabled=False)
   tadd_form_speed = tj_tadd_speed_form(csrf_enabled=False)

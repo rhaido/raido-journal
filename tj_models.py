@@ -1,4 +1,4 @@
-# -*- coding: UTF-* -*-
+#-*- encoding: utf-8 -*-
 
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -8,6 +8,9 @@ import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://train_user:bike_train@127.0.0.1/traindb'
+#app.config['SQLALCHEMY_ECHO'] = 'True'
+#app.config['SQLALCHEMY_RECORD_QUERIES'] = 'True'
+#app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config['CSRF_ENABLED'] = None
 
 db = SQLAlchemy(app)
@@ -88,8 +91,8 @@ class TJSpeedTraining(db.Model):
   accnum  = db.Column(db.Integer, nullable=False, default=0)
 
   def __init__(self, t_attrs):
-    for k in t_attrs:
-      print "t_attr[{0}] = {1}".format(k, t_attrs[k])
+    #for k in t_attrs:
+    #  print "t_attr[{0}] = {1}".format(k, t_attrs[k])
 
     if type(t_attrs) is dict:
       self.title = t_attrs['title']
@@ -126,11 +129,12 @@ class TJTraining(db.Model):
   props = db.Column(TextPickleType(pickler=json))
 
   def __init__(self, title, userid, traindate, tt, desc, t_tmpl, t_attrs):
-    print "__init__():"
-    print title, userid, traindate, tt, desc, t_tmpl
+    #print "__init__():"
+    #print unicode(title)
+    #, userid, traindate, tt, unicode(desc), t_tmpl
 
-    for k in t_attrs:
-      print "t_attr[{0}] = {1}".format(k, t_attrs[k])
+    #for k in t_attrs:
+    #  print "t_attr[{0}] = {1}".format(k, t_attrs[k])
 
     self.title = title
     self.traindate = traindate
