@@ -41,7 +41,7 @@ a:active { color:#940000; }
 
 #content h2 { font-size: 17px; }
 
-#content p { border-bottom: none; padding-left: 30px; padding-bottom: 6px; }
+#content p { border-bottom: none; padding-left: 30px; padding-bottom: 6px; color: #000; }
 
 .dashed{ border-bottom: 1px dashed!important; }
 .first{ margin-top: 0!important; }
@@ -102,8 +102,8 @@ dl.tdef dd { margin-top: 5px; margin-left: 3em; }
 
 /* dl.tlist { width: 120px; float: left; padding-left: 30px; } */
 dl.tlist { padding-left: 30px; }
-dl.tlist dt { float: left; color: #000; padding-top: 5px; }
-dl.tlist dd { margin-left: 4em; padding-top: 5px; }
+dl.tlist dt { float: left; padding-top: 5px; }
+dl.tlist dd { margin-left: 4em; padding-top: 5px; color: #000; }
 
 /***************** contacts style *******************/
 #contacts { margin-bottom: 2em; }
