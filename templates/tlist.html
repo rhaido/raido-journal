@@ -8,7 +8,7 @@
 {% include 'shorthand.html' -%}
 {% for wk in tlist -%}
 <li>
-  <h2><a href="#" class="dashed">{{ wk.tj_training.traindate | datetimeformat | e }} - {{ wk.tj_training.title | e }}</a>
+<h2><a href="#" class="dashed">{{ wk.tj_training.traindate | datetimeformat | e }} - {{ wk.tj_training.title | e }}</a>
   {%- if session.logged_in -%}
     &nbsp;&nbsp;<a href="/tedit/{{ wk.tj_training.id }}">&plusmn;</a>&nbsp;<a href="/tdel/{{ wk.tj_training.id }}">&times;</a>
   {%- endif -%}</h2> 
@@ -27,6 +27,10 @@
     </dl>
   </div>
 </li>
+{%- set day = wk.tj_training.traindate | datetimeformat(format='%a') | e  -%}
+{%- if wk.tj_training.traindate | datetimeformat(format='%a') | e == 'Sun' -%}
+<!-- SUN -->
+{%- endif -%}
 {% endfor -%}
 </ul>
 {% endblock %}
