@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% set active_page='Diary' %}
+{% from "_formhelpers.html" import render_pagination %}
 
 {% block content %}
 <p>Прошедшие тренировки по датам:</p>
@@ -36,5 +37,6 @@
 {%- endif -%}
 {% endfor -%}
 </ul>
+{{ render_pagination(pagination) }}
 {%- endif -%}
 {% endblock %}

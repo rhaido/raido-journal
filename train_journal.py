@@ -53,6 +53,13 @@ templ_2 = [
     {'name':'desc','label':'Desc'}
     ]
 
+def url_for_other_page(page):
+  args = request.view_args.copy()
+  args['week'] = page
+  return url_for(request.endpoint, **args)
+
+app.jinja_env.globals['url_for_other_page'] = url_for_other_page
+
 @app.template_filter('datetimeformat')
 def datetimeformat(value, format='%d.%m.%Y'):
   return value.strftime(format)
@@ -80,6 +87,40 @@ def tdiary():
   #  print z
 
   return render_template('tlist.html', tlist=training_list)
+
+@app.route('/tdiary/<int:year>/')
+@app.route('/tdiary/<int:year>/<int:week>')
+def tdiary_s(year, week=-1):
+  training_list = []
+
+  from collections import namedtuple
+  from datetime import date,datetime
+
+  from tj_pagination import Pagination
+
+  import isoweek
+
+  if week == -1:
+    current_date = datetime.today()
+    week = date(curent_date.year, current_date.month, current_date.day).isocalendar()[1]
+
+  WK = isoweek.Week(year,week)
+
+  WK_mon = WK.monday()
+  WK_sun = WK.sunday()
+
+  Pair = namedtuple('Pair', ['tj_training', 'output_template'])
+  
+  trn_list = TJTraining.query.filter(TJTraining.traindate >= WK_mon, TJTraining.traindate <= WK_sun).order_by(TJTraining.traindate.asc())
+
+  if trn_list:
+    for trn in TJTraining.query.filter(TJTraining.traindate >= WK_mon, TJTraining.traindate <= WK_sun).order_by(TJTraining.traindate.asc()):
+      if trn.t_tmpl == 1:
+        training_list.append(Pair(tj_training=trn,output_template=templ_1))
+      elif trn.t_tmpl == 2:
+        training_list.append(Pair(tj_training=trn,output_template=templ_2))
+
+  return render_template('tlist_pagination.html', tlist=training_list, pagination=Pagination(year, week))
 
 @app.route('/tadd', methods = ['GET'])
 def tj_tadd():
