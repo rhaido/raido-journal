@@ -1,5 +1,5 @@
 import isoweek
-from datetime import datetime
+from datetime import datetime, date
 
 class Pagination(object):
   def __init__(self, year, week):
@@ -8,7 +8,8 @@ class Pagination(object):
     self.page = week
 
     current_date = datetime.today()
-    isocalendar = date(curent_date.year, current_date.month, current_date.day).isocalendar()
+    if current_date:
+      isocalendar = date(current_date.year, current_date.month, current_date.day).isocalendar()
     
 
   @property
