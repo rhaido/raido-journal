@@ -39,7 +39,12 @@
 </div>
 
 <div id="container2">
-<div id="content">{% block content %}{% endblock %}</div>
+<div id="content">{% block content %}{% endblock %}
+{% if pagination %}
+<div id="pagination">{% block pagination %}{% endblock %}</div>
+{% endif %}
+</div>
+
 
 <div id="footer">
   <p>Copyright &copy; Raido</br></p>
