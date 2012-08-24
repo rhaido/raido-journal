@@ -121,13 +121,11 @@ ul.details{ margin: 3em 0; }*/
 /*#pagination ul {border:0; margin:0; padding:0;}*/
 
 #pagination { width: 570px; padding-right: 10px; float: left; padding-top: 10px; padding-bottom: 0px; }
-#pagination li {border: 0; margin:0; padding:0; font-size:11px; list-style:none;}
+#pagination li {border: 0; margin:0; font-size:11px; font-weight: bold; list-style:none;float:left;padding:3px 6px;}
+#pagination .active { border: 1px solid #DEDEDE;}
 
-#pagination a { margin-right: 2px;}
-#pagination a:link, a:visited { display:block; float:left; padding:3px 6px; text-decoration:none;}
+/*#pagination a:link, a:visited { display:block; float:left; padding:3px 6px; text-decoration:none;}
 #pagination a:hover{text-decoration:none;}
 
-#pagination .previous-off .next-off { color:#888888; display:block; float:left; font-weight:bold; padding:3px 4px;}
-#pagination a.next, a.previous { font-weight:bold; border: 1px solid #FFFFFF; }
-#pagination .active { color:#00000; font-weight:bold; display:block; float:left; padding:3px 6px; border: 1px solid #DEDEDE; margin-right: 1px; }
-
+#pagination .previous-off, .next-off { color:#888888; display:block; float:left; font-weight:bold; padding:3px 6px; margin-right:0px; }
+#pagination .next, .previous { font-weight:bold; margin-right: 0px; }*/
