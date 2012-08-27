@@ -102,7 +102,7 @@ def tdiary_s(year, week=-1):
 
   if week == -1:
     current_date = datetime.today()
-    week = date(curent_date.year, current_date.month, current_date.day).isocalendar()[1]
+    week = date(current_date.year, current_date.month, current_date.day).isocalendar()[1]
 
   WK = isoweek.Week(year,week)
 
