@@ -4,15 +4,15 @@
 {% from "_formhelpers.html" import render_pagination_b %}
 
 {% block content %}
-<p>Прошедшие тренировки за
-<select>
-  <option value="2010">2010</option>
-  <option value="2011">2011</option>
-  <option value="2012">2012</option>
-</select>
- <input type="submit" value="Год">
-</p>
-<!-- http://www.maxdesign.com.au/articles/definition/ -->
+<form action="{{ url_for('tdiary') }}" method="POST">
+  <p><input type="submit" value="Show"/>&nbsp;trainings in year
+  <select>
+    {%- for year in pagination.iter_years() -%}
+    <option name="year" value="{{ year | e }}">{{ year }}</option>
+    {%- endfor -%}
+  </select></p>
+</form>
+
 {%- if not tlist -%}
 <p>No trainings were found</p>
 {%- else -%}
@@ -21,7 +21,7 @@
 {% for wk in tlist -%}
 <li>
 <h2><a href="#" class="dashed">{{ wk.tj_training.traindate | datetimeformat | e }},
-    {{ wk.tj_training.traindate | datetimeformat(format='%A') | e }} - {{ wk.tj_training.title | e }}</a>
+{{ wk.tj_training.traindate | datetimeformat(format='%A') | e }} - {{ wk.tj_training.title | e }}</a>
 
   {%- if session.logged_in -%}
   &nbsp;&nbsp;<a href="{{ url_for('tj_t_edit', t_id=wk.tj_training.id) }}">&plusmn;</a>

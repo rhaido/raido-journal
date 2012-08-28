@@ -48,4 +48,4 @@ class Pagination(object):
 
   def iter_years(self):
     for num in xrange(2000, self.year):
-      yield year
+      yield num
