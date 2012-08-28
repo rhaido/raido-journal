@@ -22,8 +22,10 @@
 <li>
 <h2><a href="#" class="dashed">{{ wk.tj_training.traindate | datetimeformat | e }},
     {{ wk.tj_training.traindate | datetimeformat(format='%A') | e }} - {{ wk.tj_training.title | e }}</a>
+
   {%- if session.logged_in -%}
-    &nbsp;&nbsp;<a href="/tedit/{{ wk.tj_training.id }}">&plusmn;</a>&nbsp;<a href="/tdel/{{ wk.tj_training.id }}">&times;</a>
+  &nbsp;&nbsp;<a href="{{ url_for('tj_t_edit', t_id=wk.tj_training.id) }}">&plusmn;</a>
+  <a href="{{ url_for('tj_t_del', t_id=wk.tj_training.id) }}">&times;</a>
   {%- endif -%}</h2> 
 
   <div class="hide">
