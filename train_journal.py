@@ -70,7 +70,14 @@ def index():
   return render_template('index.html')
 
 @app.route('/tdiary')
-def tdiary():
+def tdiary_latest():
+  from datetime import datetime
+  current_date = datetime.today()
+
+  return redirect(url_for('tdiary_paged', year = current_date.year))
+
+@app.route('/tdiary/all')
+def tdiary_all():
   training_list = []
 
   from collections import namedtuple
@@ -125,9 +132,6 @@ def tdiary_paged(year, week=-1):
 @app.route('/select', methods=['POST'])
 def tdiary_select():
   t_year = request.form['year']
-#  t_year = request.form['year']
-#  if request.method == 'POST':
-#    t_year = request.form['year']
 
   return redirect(url_for('tdiary_paged', year=t_year))
 
