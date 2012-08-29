@@ -88,9 +88,9 @@ def tdiary():
 
   return render_template('tlist.html', tlist=training_list)
 
-@app.route('/tdiary/<int:year>/')
-@app.route('/tdiary/<int:year>/<int:week>')
-def tdiary_s(year, week=-1):
+@app.route('/tdiary/<int:year>/', methods=['GET'])
+@app.route('/tdiary/<int:year>/<int:week>', methods=['GET'])
+def tdiary_paged(year, week=-1):
   training_list = []
 
   from collections import namedtuple
@@ -121,6 +121,15 @@ def tdiary_s(year, week=-1):
         training_list.append(Pair(tj_training=trn,output_template=templ_2))
 
   return render_template('tlist_pagination.html', tlist=training_list, pagination=Pagination(year, week))
+
+@app.route('/select', methods=['POST'])
+def tdiary_select():
+  t_year = request.form['year']
+#  t_year = request.form['year']
+#  if request.method == 'POST':
+#    t_year = request.form['year']
+
+  return redirect(url_for('tdiary_paged', year=t_year))
 
 @app.route('/tadd', methods = ['GET'])
 def tj_tadd():

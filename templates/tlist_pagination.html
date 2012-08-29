@@ -4,11 +4,11 @@
 {% from "_formhelpers.html" import render_pagination_b %}
 
 {% block content %}
-<form action="{{ url_for('tdiary') }}" method="POST">
+<form action="{{ url_for('tdiary_select') }}" method="POST">
   <p><input type="submit" value="Show"/>&nbsp;trainings in year
-  <select>
+  <select name="year">
     {%- for year in pagination.iter_years() -%}
-    <option name="year" value="{{ year | e }}">{{ year }}</option>
+    <option value="{{ year | e }}">{{ year | e }}</option>
     {%- endfor -%}
   </select></p>
 </form>

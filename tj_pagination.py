@@ -47,5 +47,10 @@ class Pagination(object):
         last = num
 
   def iter_years(self):
-    for num in xrange(2000, self.year):
-      yield num
+    current_year = self.isocalendar[0]
+
+    yield self.year
+
+    for num in xrange(current_year, 2000, -1):
+      if (num != self.year):
+        yield num
